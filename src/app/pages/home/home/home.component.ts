@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  books = [
+      {
+        title: 'Harry potter',
+        author: 'J K Rowling',
+        year: 2008,
+      },
+      {
+        title: 'Lord of the rings',
+        author: 'J R R Tolkien',
+        year: 1960,
+      },
+      {
+        title: 'Fundacion',
+        author: 'Isaac Asimov',
+        year: 1970,
+      },
+  ]
 }
