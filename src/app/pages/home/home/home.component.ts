@@ -1,27 +1,27 @@
-import { Component } from '@angular/core';
+interface Book {
+  title: string;
+  author: string;
+  year: number;
+  image: string;
+}
+
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: `./home.component.html`,
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  books: Book[] | any;
 
-  books = [
-      {
-        title: 'Harry potter',
-        author: 'J K Rowling',
-        year: 2008,
-      },
-      {
-        title: 'Lord of the rings',
-        author: 'J R R Tolkien',
-        year: 1960,
-      },
-      {
-        title: 'Fundacion',
-        author: 'Isaac Asimov',
-        year: 1970,
-      },
-  ]
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http.get<Book[]>('assets/books.json').subscribe(data => {
+      this.books = data;
+    })
+  }
+ 
 }
