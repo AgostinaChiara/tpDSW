@@ -3,24 +3,28 @@
         "title": "Harry potter 2",
         "author": "J K Rowling",
         "year": 2008,
-        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fstatic%2Fsys-images%2FGuardian%2FPix%2Fpictures%2F2014%2F7%2F30%2F1406719264487%2Ffd90e162-93de-41b1-aea5-f8e49227e85b-1360x2040.jpeg%3Fw%3D1200%26q%3D55%26auto%3Dformat%26usm%3D12%26fit%3Dmax%26s%3D6aec5983026d71051e0abf881c79ab6f&f=1&nofb=1&ipt=479c4d1f8166b816269321df4bed25b27653325ea4939f47825c0b2ccc39ecdc&ipo=images"
+        "image": "https://www.mflibreria.com/wp-content/uploads/2020/08/ylac%C3%A1marasecreta-638x1024.jpg",
+        "price": 15000
       },
       {
         "title": "El senor de los anillos",
         "author": "J R R Tolkien",
         "year": 1960,
-        "image": "https://www.elsotano.com/imagenes_grandes/9788445/978844500302.JPG"
+        "image": "https://www.elsotano.com/imagenes_grandes/9788445/978844500302.JPG",
+        "price": 10000
       },
       {
         "title": "Fundacion asivov",
         "author": "Isaac Asimov",
         "year": 1970,
-        "image": "https://www.tiposinfames.com/media/img/portadas/9788497599245.jpg"
+        "image": "https://www.tiposinfames.com/media/img/portadas/9788497599245.jpg",
+        "price": 8000
       },
       {
         "title": "Crepusculo",
         "author": "alguien",
         "year": 2000,
-        "image": "https://www.mejoreslibros.top/wp-content/uploads/2020/09/Crepusculo.jpg"
+        "image": "https://www.mejoreslibros.top/wp-content/uploads/2020/09/Crepusculo.jpg",
+        "price": 16000
       }
 ]

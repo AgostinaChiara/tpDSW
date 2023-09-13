@@ -1,12 +1,6 @@
-interface Book {
-  title: string;
-  author: string;
-  year: number;
-  image: string;
-}
-
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-home',
