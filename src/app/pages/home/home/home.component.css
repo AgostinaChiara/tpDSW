@@ -7,3 +7,8 @@
  
   background-color: darkcyan;
 }
+
+.btn-outline-primary {
+  border-color: darkcyan;
+  color: darkcyan;
+}

@@ -1,30 +1,38 @@
  [
       {
+        "isbn": 12345,
         "title": "Harry potter 2",
         "author": "J K Rowling",
         "year": 2008,
         "image": "https://www.mflibreria.com/wp-content/uploads/2020/08/ylac%C3%A1marasecreta-638x1024.jpg",
-        "price": 15000
+        "price": 15000,
+        "category": "Ciencia ficcion"
       },
       {
+        "isbn": 23456,
         "title": "El senor de los anillos",
         "author": "J R R Tolkien",
         "year": 1960,
         "image": "https://www.elsotano.com/imagenes_grandes/9788445/978844500302.JPG",
-        "price": 10000
+        "price": 10000,
+        "category": "Ciencia ficcion"
       },
       {
+        "isbn": 34567,
         "title": "Fundacion asivov",
         "author": "Isaac Asimov",
         "year": 1970,
         "image": "https://www.tiposinfames.com/media/img/portadas/9788497599245.jpg",
-        "price": 8000
+        "price": 8000,
+        "category": "Educacion"
       },
       {
+        "isbn": 45678,
         "title": "Crepusculo",
         "author": "alguien",
         "year": 2000,
         "image": "https://www.mejoreslibros.top/wp-content/uploads/2020/09/Crepusculo.jpg",
-        "price": 16000
+        "price": 16000,
+        "category": "Ciencia ficcion"
       }
 ]

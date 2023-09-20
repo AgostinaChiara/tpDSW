@@ -1,5 +1,6 @@
 <article>
-  <div class="card" routerLink="book">
+  <div class="card">
+    <a [routerLink]="['/book', book.isbn]">
     <img src={{book.image}} alt="book-image" class="card-img-top">
     <div class="card-body">
       <small class="bg-light text-center text-decoration-line-through">{{book.price}}</small>
@@ -9,5 +10,6 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore doloremque in, similique consequatur aliquam reiciendis natus doloribus voluptatibus dolorem id sunt voluptas quia, incidunt, cumque magnam eveniet quos quod exercitationem.</p>
       
     </div>
+    </a>
   </div>
 </article>

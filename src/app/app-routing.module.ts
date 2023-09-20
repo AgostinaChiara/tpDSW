@@ -8,7 +8,7 @@ const routes: Routes = [{
   component: HomeComponent
 },
 {
-  path: 'book',
+  path: 'book/:isbn',
   component: BookDetailComponent
 },
 {
@@ -20,3 +20,4 @@ const routes: Routes = [{
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

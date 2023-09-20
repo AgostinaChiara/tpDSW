@@ -1,51 +1,72 @@
-<div class="container">
+<div class="container book-details">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Library</li>
+    </ol>
+  </nav>
   <div class="row">
-    <div class="col-md-15">
-      <div class="card shadow-effect">
-        <div class="card-body">
+    <div class="col-sm-9 p-3">
+      <img class="img-responsive mb-5" src="{{ bookData.image }}" width="312" height="468">
+      <hr>
+      <h3 class="mt-3 mb-3">Caracteristicas principales</h3>
+      <table class="table table-striped table-bordered">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Titulo del libro</th>
+            <td>{{ bookData.title }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Autor</th>
+            <td>{{ bookData.author }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Idioma</th>
+            <td>Español</td>
+          </tr>
+          <tr>
+            <th scope="row">Editorial</th>
+            <td>xxxxx</td>
+          </tr>
+          <tr>
+            <th scope="row">Tapa del libro</th>
+            <td>Blanda</td>
+          </tr>
+          <tr>
+            <th scope="row">Año de publicacion</th>
+            <td>{{bookData.year}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h4>Otras Caracteristicas</h4>
 
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fstatic%2Fsys-images%2FGuardian%2FPix%2Fpictures%2F2014%2F7%2F30%2F1406719264487%2Ffd90e162-93de-41b1-aea5-f8e49227e85b-1360x2040.jpeg%3Fw%3D1200%26q%3D55%26auto%3Dformat%26usm%3D12%26fit%3Dmax%26s%3D6aec5983026d71051e0abf881c79ab6f&f=1&nofb=1&ipt=479c4d1f8166b816269321df4bed25b27653325ea4939f47825c0b2ccc39ecdc&ipo=images" width="312" height="468">
-
-          <h4 class="fw-bold">{{bookData.title}}</h4>
-          <small class="bg-light text-center text-decoration-line-through">{{bookData.price}}</small>
-          <small class="text-center ml-3 fs-4">{{bookData.price}}</small>
-
-          <h3>Caracteristicas principales</h3>
-          <table class="table table-striped table-bordered">
-            <thead>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Titulo del libro</th>
-                <td>{{bookData.title}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Autor</th>
-                <td>{{bookData.author}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Idioma</th>
-                <td>Español</td>
-              </tr>
-              <tr>
-                <th scope="row">Editorial</th>
-                <td>xxxxx</td>
-              </tr>
-              <tr>
-                <th scope="row">Tapa del libro</th>
-                <td>Blanda</td>
-              </tr>
-              <tr>
-                <th scope="row">Año de publicacion</th>
-                <td>{{bookData.year}}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4>Otras Caracteristicas</h4>
-
-        </div>
+    </div>
+    <div class="col-3 p-3">
+      <p>Nuevo</p>
+      <h3 class="fw-bold">{{bookData.title}}</h3>
+      <h3>{{ bookData.price | currency }}</h3>
+      <h4>en 12x $155</h4>
+      <a href="">Ver medios de pago</a>
+      <p class="fw-bold">Stock disponible</p>
+      <p>Cantidad: </p>
+      <select class="form-select mb-3" >
+        <option selected>1 Unidad</option>
+        <option value="1">2 Unidades</option>
+        <option value="2">3 Unidades</option>
+        <option value="3">4 Unidades</option>
+        <option value="3">5 Unidades</option>
+      </select>
+      <div class="d-grid gap-3 col-9 mx-auto">
+        <button class="btn buy-button" type="button">Comprar ahora</button>
+        <button class="btn cart-button " type="button">Agregar al carrito</button>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
     </div>
   </div>
 </div>
