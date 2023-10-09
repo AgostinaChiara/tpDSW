@@ -1,0 +1,56 @@
+<div class="main-container">
+  <div class="cart-container">
+    <ul class="tab-container">
+      <li class="tab-li">
+        <span style="color: #3483fa;">Tu carrito (1)</span>
+      </li>
+    </ul>
+    <div class="separator"></div>
+    <div *ngFor="let item of items">
+      <section class="item-row">
+        <article class="item-cart">
+          <div class="item-cart-asset">
+            <img src="https://www.mflibreria.com/wp-content/uploads/2020/08/ylac%C3%A1marasecreta-638x1024.jpg" alt="">
+          </div>
+          <div class="item-cart-info">
+            <div class="item-title">
+              <span class="text-title fw-bold">Titulo Libro</span>
+            </div>
+            <div class="item-cart-actions">
+              <div class="actions-container">
+                <a><span style="color: #3483fa;">Eliminar</span></a>
+                <a><span style="color: #3483fa;">Comprar ahora</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="quantity-selector">
+          <div class="quantity-selector-box">
+            <form class="quantity-selector-form">
+              <button class="quantity-selector-button">
+                <span class="quantity-span">-</span>
+              </button>
+              <div class="form-control">
+                  <span>1</span>
+              </div>
+              <button class="quantity-selector-button">
+                <span class="quantity-span">+</span>
+              </button>
+            </form>
+          </div>
+          <p class="quantity-selector-message">
+            <span style="color: #999; font-size: 14px;">5 disponibles</span>
+          </p>
+        </div>
+
+        <div class="item-price-container">
+          <div class="item-price">
+            <span class="item-price-span">$4.900</span>
+          </div>
+        </div>
+        <div class="separator" style="margin: 0 0 48px;"></div>
+      </section>
+    </div>
+  </div>
+</div>

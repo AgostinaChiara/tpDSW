@@ -1,0 +1,11 @@
+<article>
+  <div class="card">
+    <a [routerLink]="['/book', book.isbn]">
+    <img src={{book.image}} alt="book-image" class="card-img-top cardImg">
+    <div class="card-body">
+      <p class="card-text">{{book.title}}</p>
+      <small class="text-center ml-3 fw-bold fs-6">{{book.price | currency }}</small>
+    </div>
+    </a>
+  </div>
+</article>

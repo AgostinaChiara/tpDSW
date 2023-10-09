@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StoreService } from 'src/app/services/store.service';
+import { Bookprueba } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-book',
@@ -9,15 +9,12 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class BookComponent implements OnInit {
 
-  @Input() book:any;
+  @Input() book: Bookprueba | any;
+
   
   constructor(private activatedRoute: ActivatedRoute) {}
   isbn: number = 0;
   ngOnInit(): void {
     this.isbn = this.activatedRoute.snapshot.params['isbn'];
   }
-
-
-
-
 }

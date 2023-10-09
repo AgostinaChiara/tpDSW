@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book.model';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,24 @@ import { Book } from 'src/app/models/book.model';
 })
 export class HomeComponent implements OnInit {
   books: Book[] | any;
+  featuredBooks: Book[] | any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private _bookService: BookService) {}
 
   ngOnInit(): void {
-    this.http.get<Book[]>('assets/books.json').subscribe(data => {
-      this.books = data;
-    })
+    this.getBooks();
+    this.getFeaturedBook();
   }
  
+  getBooks() {
+    this._bookService.getBooks().subscribe((data) => {
+      this.books = data;
+    });
+  }
+
+  getFeaturedBook() {
+    this._bookService.getFeaturedBooks().subscribe((data) => {
+      this.featuredBooks = data;
+    });
+  }
 }

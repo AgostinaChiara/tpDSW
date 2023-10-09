@@ -24,15 +24,15 @@
           </tr>
           <tr>
             <th scope="row">Idioma</th>
-            <td>Español</td>
+            <td>{{ bookData.language }}</td>
           </tr>
           <tr>
             <th scope="row">Editorial</th>
-            <td>xxxxx</td>
+            <td>{{ bookData.publisher }}</td>
           </tr>
           <tr>
             <th scope="row">Tapa del libro</th>
-            <td>Blanda</td>
+            <td>{{ bookData.cover }}</td>
           </tr>
           <tr>
             <th scope="row">Año de publicacion</th>
@@ -41,7 +41,8 @@
         </tbody>
       </table>
       
-      <h4>Otras Caracteristicas</h4>
+      <h4 class="pt-3 pb-3">Sinopsis</h4>
+      <p style="text-align: justify;">{{bookData.description}}</p>
 
     </div>
     <div class="col-3 p-3">
@@ -51,7 +52,7 @@
       <h4>en 12x $155</h4>
       <a href="">Ver medios de pago</a>
       <p class="fw-bold">Stock disponible</p>
-      <p>Cantidad: </p>
+      <p>Cantidad:</p>
       <select class="form-select mb-3" >
         <option selected>1 Unidad</option>
         <option value="1">2 Unidades</option>
@@ -61,7 +62,7 @@
       </select>
       <div class="d-grid gap-3 col-9 mx-auto">
         <button class="btn buy-button" type="button">Comprar ahora</button>
-        <button class="btn cart-button " type="button">Agregar al carrito</button>
+        <button class="btn cart-button " type="button" (click)="addToCart(bookData)">Agregar al carrito</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top" [ngStyle]="navbg">
+<nav class="navbar navbar-expand-lg fixed-top shadow" [ngStyle]="navbg">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="home">
       <img width="100" height="100" src="https://img.icons8.com/clouds/100/literature.png" alt="Icono" />
@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Libros</a>
+          <a class="nav-link active" aria-current="page" routerLink="list">Libros</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -19,12 +19,9 @@
             Categorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" routerLink="list/novela">Fantasia</a></li>
+            <li><a class="dropdown-item" routerLink="list/:category">Educacion</a></li>
+            <li><a class="dropdown-item" routerLink="list/:category">Novela</a></li>
           </ul>
         </li>
       </ul>

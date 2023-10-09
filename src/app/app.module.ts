@@ -7,8 +7,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BookDetailComponent } from './pages/book-detail/book-detail.component';
-import { BookComponent } from './pages/books/book.component';
+import { BookComponent } from './components/books/book.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
+import { BookListComponent } from './pages/book-list/book-list/book-list.component';
+import { FeaturedBookComponent } from './components/featured-book/featured-book.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -18,12 +22,16 @@ import { FooterComponent } from './components/footer/footer/footer.component';
     HeaderComponent,
     BookDetailComponent,
     BookComponent,
-    FooterComponent
+    FooterComponent,
+    BookListComponent,
+    FeaturedBookComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
