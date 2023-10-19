@@ -3,11 +3,11 @@
     style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
     aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Library</li>
+      <li class="breadcrumb-item"><a routerLink="/list">Libros</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{category}}</li>
     </ol>
   </nav>
-  <h1 class="fw-bold" style="font-size: 26px;">Libros Fantasia</h1>
+  <h1 class="fw-bold" style="font-size: 26px;">Libros {{category}}</h1>
   <div class="container" style="justify-content: space-between; display: flex; flex-direction: row; flex-wrap: nowrap; align-content: stretch;">
     <p class="" style="font-size: 14px; margin-bottom: 0px;">20.212 resultados</p>
     

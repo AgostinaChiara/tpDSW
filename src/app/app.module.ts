@@ -13,6 +13,9 @@ import { BookListComponent } from './pages/book-list/book-list/book-list.compone
 import { FeaturedBookComponent } from './components/featured-book/featured-book.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { CartService } from './services/cart.service';
+import { BookService } from './services/book.service';
 
 
 @NgModule({
@@ -25,15 +28,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     BookListComponent,
     FeaturedBookComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [CartService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

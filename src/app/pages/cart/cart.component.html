@@ -2,19 +2,19 @@
   <div class="cart-container">
     <ul class="tab-container">
       <li class="tab-li">
-        <span style="color: #3483fa;">Tu carrito (1)</span>
+        <span style="color: #3483fa;">Tu carrito ({{dataSource.length}})</span>
       </li>
     </ul>
     <div class="separator"></div>
-    <div *ngFor="let item of items">
+    <div *ngFor="let item of dataSource">
       <section class="item-row">
         <article class="item-cart">
           <div class="item-cart-asset">
-            <img src="https://www.mflibreria.com/wp-content/uploads/2020/08/ylac%C3%A1marasecreta-638x1024.jpg" alt="">
+            <img src={{item.product}} alt="">
           </div>
           <div class="item-cart-info">
             <div class="item-title">
-              <span class="text-title fw-bold">Titulo Libro</span>
+              <span class="text-title fw-bold">{{item.name}}</span>
             </div>
             <div class="item-cart-actions">
               <div class="actions-container">
@@ -46,7 +46,7 @@
 
         <div class="item-price-container">
           <div class="item-price">
-            <span class="item-price-span">$4.900</span>
+            <span class="item-price-span">{{item.price}}</span>
           </div>
         </div>
         <div class="separator" style="margin: 0 0 48px;"></div>

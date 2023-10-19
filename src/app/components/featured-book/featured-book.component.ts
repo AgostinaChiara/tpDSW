@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StoreService } from 'src/app/services/store.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-featured-book',

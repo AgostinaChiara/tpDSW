@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Bookprueba } from '../models/book.model';
+import { Book } from '../models/book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +16,24 @@ export class BookService {
     this.myApiUrl = 'books/'
   }
 
-  getBooks(): Observable<Bookprueba[]> {
-    // return this.http.get<Bookprueba[]>(`${this.myAppUrl}${this.myApiUrl}`)
-    return this.http.get<Bookprueba[]>(`http://localhost:3000/books/`)
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`http://localhost:3000/books/`)
   }
 
-  getFeaturedBooks(): Observable<Bookprueba[]> {
-    return this.http.get<Bookprueba[]>('http://localhost:3000/books?limit=4')
+  getCategoryBooks(name:string): Observable<Book[]> {
+    return this.http.get<Book[]>(`http://localhost:3000/books/categories/${name}`)
   }
 
-  getOne(isbn: string): Observable<Bookprueba> {
-    return this.http.get<Bookprueba>(`http://localhost:3000/books/${isbn}`);
+  getSearchedBooks(searchedTxt: string) {
+    return this.http.get<Book[]>(`http://localhost:3000/books?keyword=${searchedTxt}`);
+  }
+
+  getFeaturedBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>('http://localhost:3000/books?limit=4')
+  }
+
+  getOne(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`http://localhost:3000/books/${isbn}`);
   }
 
 }

@@ -1,0 +1,37 @@
+### Recuperar todas las películas
+GET http://localhost:3000/books
+
+### Recuperar los libros destacados
+GET http://localhost:3000/books/featured/
+
+### Recuperar una película por id
+GET http://localhost:3000/books/4454554545444
+
+
+### Recuperar todos los libros por categoria
+GET http://localhost:3000/books/categories/novela
+
+### Crear un libro con POST
+POST http://localhost:4200/books
+Content-Type: application/json
+
+{
+  "isbn": 55555,
+  "title": "Anna Frank",
+  "author": "Anna Frank",
+  "year": 1936,
+  "image": "https://www.tiposinfames.com/media/img/portadas/9788497599245.jpg",
+  "price": 5200,
+  "category": "Educacion"
+}
+
+### Actualizar un libro
+PATCH http://localhost:3000/books/4454554545444
+Content-Type: application/json
+
+{
+  "year": 2022
+}
+
+### Eliminar un libro
+DELETE http://localhost:3000/books/4454554545444

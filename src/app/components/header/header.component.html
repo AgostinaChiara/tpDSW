@@ -18,22 +18,20 @@
             aria-expanded="false">
             Categorias
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="list/novela">Fantasia</a></li>
-            <li><a class="dropdown-item" routerLink="list/:category">Educacion</a></li>
-            <li><a class="dropdown-item" routerLink="list/:category">Novela</a></li>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <li *ngFor="let category of categories"><a class="dropdown-item" [routerLink]="['/list', category.name]">{{category.name}}</a></li>
           </ul>
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <input class="form-control me-2" type="search" [(ngModel)]="inputText" (input)="onSearchTextChanged()" placeholder="Buscar" aria-label="Search" name="searchText">
+        <button class="btn btn-outline-success" type="submit" [routerLink]="['/list']" [queryParams]="{keywords: inputText}" >Buscar</button>
         <a class="navbar-user" href="">
           <img width="30" height="30"
             src="https://img.icons8.com/?size=32&id=15263&format=png"
             alt="Usuario">
         </a>
-        <a class="navbar-cart" href="">
+        <a class="navbar-cart" routerLink="cart">
           <img width="30" height="30"
             src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/32/external-line-travel-tanah-basah-basic-outline-tanah-basah-88.png"
             alt="Carrito" />

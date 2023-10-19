@@ -1,9 +1,9 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Bookprueba } from 'src/app/models/book.model';
+import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
-import { StoreService } from 'src/app/services/store.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -12,10 +12,10 @@ import { StoreService } from 'src/app/services/store.service';
 })
 
 export class BookDetailComponent implements OnInit {
-  bookData: Bookprueba | any = {};
+  bookData: Book | any = {};
   isbn: string = '';
 
-  constructor(private route: ActivatedRoute, private _bookService: BookService, private cartService: StoreService) {  }
+  constructor(private route: ActivatedRoute, private _bookService: BookService, private cartService: CartService) {  }
 
   ngOnInit(): void {
     this.isbn = this.route.snapshot.params['isbn'];
@@ -28,8 +28,14 @@ export class BookDetailComponent implements OnInit {
     });
   }
 
-  addToCart(book: Bookprueba) {
-    this.cartService.addToCart(book);
-    console.log(book);
-  }
+  onAddToCart(book: Book) {
+    console.log("Agregando al carrito...")
+    this.cartService.addToCart({
+      product: book.image,
+      name: book.title,
+      price: book.price,
+      quantity: 1,
+      id: book.isbn
+    })
+   }
 }

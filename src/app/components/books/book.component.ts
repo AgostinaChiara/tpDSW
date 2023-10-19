@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Bookprueba } from 'src/app/models/book.model';
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-book',
@@ -9,9 +9,8 @@ import { Bookprueba } from 'src/app/models/book.model';
 })
 export class BookComponent implements OnInit {
 
-  @Input() book: Bookprueba | any;
+  @Input() book: Book | any;
 
-  
   constructor(private activatedRoute: ActivatedRoute) {}
   isbn: number = 0;
   ngOnInit(): void {
