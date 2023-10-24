@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { CartService } from './services/cart.service';
 import { BookService } from './services/book.service';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { BookService } from './services/book.service';
     BookListComponent,
     FeaturedBookComponent,
     CartComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
