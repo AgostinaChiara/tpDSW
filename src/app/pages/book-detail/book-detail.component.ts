@@ -15,7 +15,7 @@ export class BookDetailComponent implements OnInit {
   bookData: Book | any = {};
   isbn: string = '';
 
-  constructor(private route: ActivatedRoute, private _bookService: BookService, private cartService: CartService) {  }
+  constructor(private route: ActivatedRoute, private _bookService: BookService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.isbn = this.route.snapshot.params['isbn'];
@@ -29,13 +29,13 @@ export class BookDetailComponent implements OnInit {
   }
 
   onAddToCart(book: Book) {
-    console.log("Agregando al carrito...")
     this.cartService.addToCart({
       product: book.image,
       name: book.title,
       price: book.price,
       quantity: 1,
-      id: book.isbn
+      id: book.isbn,
+      stock: book.stock
     })
    }
 }

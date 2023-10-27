@@ -6,6 +6,12 @@
       </li>
     </ul>
     <div class="separator"></div>
+    <div *ngIf="!cart.items.length">
+      <p>
+        Your cart is empty.
+        <button routerLink="/home">Start shopping</button>
+      </p>
+    </div>
     <div *ngFor="let item of dataSource">
       <section class="item-row">
         <article class="item-cart">
@@ -18,7 +24,7 @@
             </div>
             <div class="item-cart-actions">
               <div class="actions-container">
-                <a><span style="color: #3483fa;">Eliminar</span></a>
+                <a (click)="onRemoveFromCart(item)"><span style="color: #3483fa;">Eliminar</span></a>
                 <a><span style="color: #3483fa;">Comprar ahora</span></a>
               </div>
             </div>
@@ -28,29 +34,45 @@
         <div class="quantity-selector">
           <div class="quantity-selector-box">
             <form class="quantity-selector-form">
-              <button class="quantity-selector-button">
+              <button class="quantity-selector-button"
+                (click)="onRemoveQuantity(item)">
                 <span class="quantity-span">-</span>
               </button>
               <div class="form-control">
-                  <span>1</span>
+                  <span>{{item.quantity}}</span>
               </div>
-              <button class="quantity-selector-button">
+              <button class="quantity-selector-button"
+                (click)="onAddQuantity(item)">
                 <span class="quantity-span">+</span>
               </button>
             </form>
           </div>
           <p class="quantity-selector-message">
-            <span style="color: #999; font-size: 14px;">5 disponibles</span>
+            <span style="color: #999; font-size: 14px;">{{item.stock}} disponibles</span>
           </p>
         </div>
 
         <div class="item-price-container">
           <div class="item-price">
-            <span class="item-price-span">{{item.price}}</span>
+            <span class="item-price-span">{{ item.quantity * item.price | currency }}</span>
           </div>
         </div>
+        
         <div class="separator" style="margin: 0 0 48px;"></div>
       </section>
+    </div>
+    <div class="total-row">
+      <div class="text-div">
+        <h5 class="total-text">
+          <span>Total con envio</span>
+        </h5>
+      </div>
+    
+      <div class="total-div">
+        <h6 class="total-text">
+          <span>{{getTotal(cart.items) | currency }}</span>
+        </h6>
+      </div>
     </div>
   </div>
 </div>

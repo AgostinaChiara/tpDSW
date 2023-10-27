@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/models/book.model';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -25,6 +24,18 @@ export class CartComponent implements OnInit {
 
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items)
+  }
+
+  onRemoveFromCart(item: CartItem): void {
+    this.cartService.removeFromCart(item);
+  }
+
+  onAddQuantity(item: CartItem): void {
+    this.cartService.addToCart(item);
+  }
+
+  onRemoveQuantity(item: CartItem): void {
+    this.cartService.removeQuantity(item);
   }
 
 }
