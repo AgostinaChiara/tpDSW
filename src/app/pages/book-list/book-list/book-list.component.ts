@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import  { filter } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { BookService } from 'src/app/services/book.service';
   templateUrl:'./book-list.component.html',
   styleUrls: ['./book-list.component.css']
 })
-export class BookListComponent {
+export class BookListComponent implements OnInit {
   books: Book[] | any;
   category: string | any;
   searchText: string | any;
@@ -24,6 +24,7 @@ export class BookListComponent {
 
     this.getBooks();
   }
+
 
   getBooks() {
     if(this.searchText) {

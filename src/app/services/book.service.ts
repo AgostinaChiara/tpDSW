@@ -36,4 +36,12 @@ export class BookService {
     return this.http.get<Book>(`http://localhost:3000/books/${isbn}`);
   }
 
+  createBook(book: any): Observable<Book> {
+    return this.http.post<Book>(`http://localhost:3000/books/`, book);
+  }
+
+  deleteProduct(isbn: number): Observable<Book> {
+    return this.http.delete<Book>(`http://localhost:3000/books/${isbn}`);
+  }
+
 }

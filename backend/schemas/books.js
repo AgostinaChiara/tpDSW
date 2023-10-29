@@ -1,28 +1,24 @@
 import z from 'zod'
 
 const bookSchema = z.object({
-  isbn: z.number().int().positive(),
+  isbn: z.string(),
   title: z.string({
     invalid_type_error: 'Book title must be a string',
     required_error: 'Book title is required.'
   }),
   year: z.number().int(),
   author: z.string(),
-  pages: z.number().int().positive(),
-  price: z.number().positive(),
   image: z.string().url({
     message: 'Poster must be a valid URL'
   }),
-  category: z.array(
-    z.enum(['Ficcion', 'Aventura', 'Crimen', 'Comedia', 'Drama', 'Fantasia', 'Horror', 'Thriller', 'Sci-Fi']),
-    {
-      required_error: 'Category is required.',
-      invalid_type_error: 'Category must be an array of enum Genre'
-    }
-  ),
+  price: z.number().positive(),
+  category: z.string(),
   publisher: z.number().int(),
+  cover: z.string(),
+  pages: z.number().int().positive(),
   language: z.string(),
-  description: z.string()
+  description: z.string(),
+  stock: z.number().int().positive()
 })
 
 export function validateBook (input) {

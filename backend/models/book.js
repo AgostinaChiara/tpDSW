@@ -51,7 +51,7 @@ export class BookModel {
       return books
     } else {
       const [books] = await connection.query(
-        'SELECT * FROM book;'
+        'SELECT book.*, category.name FROM book INNER JOIN category ON category.id = book.category;'
       )
       return books
     }
@@ -82,33 +82,30 @@ export class BookModel {
 
   static async create ({ input }) {
     const {
-      genre: genreInput, // genre is an array
       isbn,
       title,
       year,
       author,
       image,
       price,
+      category,
+      publisher,
+      cover,
       pages,
-      language
+      language,
+      description,
+      stock
     } = input
 
     try {
       await connection.query(
-        `INSERT INTO book (isbn, title, year, author, image, price, pages, language)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
-        [isbn, title, year, author, image, price, pages, language]
+        `INSERT INTO book (isbn, title, year, author, image, price, category, publisher, cover, pages, language, description, stock)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [isbn, title, year, author, image, price, category, publisher, cover, pages, language, description, stock]
       )
     } catch (e) {
-      throw new Error('Error creating book')
+      throw new Error('Error creating book ' + e.message)
     }
-
-    const [books] = await connection.query(
-      `SELECT isbn, title, year, author, image, price, pages, language
-        FROM book WHERE id = isbn;`
-    )
-
-    return books[0]
   }
 
   static async delete ({ id }) {
@@ -123,6 +120,35 @@ export class BookModel {
   }
 
   static async update ({ id, input }) {
+    const {
+      title,
+      year,
+      author,
+      image,
+      price,
+      category,
+      publisher,
+      cover,
+      pages,
+      language,
+      description,
+      stock
+    } = input
 
+    try {
+    const [result] = await connection.query(
+      `UPDATE book
+       SET title = ?, year = ?, author = ?, image = ?, price = ?, category = ?, publisher = ?, cover = ?, pages = ?, language = ?, description = ?, stock = ?
+       WHERE isbn = ?;`,
+      [title, year, author, image, price, category, publisher, cover, pages, language, description, stock, id]
+    );
+
+    if (result.affectedRows === 0) {
+      // Si no se actualizó ningún libro (el ISBN no se encontró), puedes manejarlo como quieras.
+      throw new Error('No se encontró ningún libro para actualizar.');
+    }
+  } catch (e) {
+    throw new Error('Error al actualizar el libro: ' + e.message);
+  }
   }
 }

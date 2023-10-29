@@ -13,7 +13,6 @@ const connection = await mysql.createConnection(connectionString)
 
 export class CategoryModel {
   static async getAll () {
-    console.log("getall categories")
     const [categs] = await connection.query(
       'SELECT * FROM category'
     )

@@ -12,21 +12,27 @@ GET http://localhost:3000/books/4454554545444
 GET http://localhost:3000/books/categories/novela
 
 ### Crear un libro con POST
-POST http://localhost:4200/books
+POST http://localhost:3000/books
 Content-Type: application/json
 
 {
-  "isbn": 55555,
-  "title": "Anna Frank",
-  "author": "Anna Frank",
-  "year": 1936,
-  "image": "https://www.tiposinfames.com/media/img/portadas/9788497599245.jpg",
-  "price": 5200,
-  "category": "Educacion"
+  "isbn": "9789506446949",
+  "title": "HOLLY",
+  "year": 2023,
+  "author": "Sthephen King",
+  "image": "https://imagessl3.casadellibro.com/a/l/s5/13/9788401031113.webp",
+  "price": 15699,
+  "category": 1,
+  "publisher": 1,
+  "cover": "Blanda",
+  "pages": 624,
+  "language": "Ingles",
+  "description": "Holly Gibney; uno de los personajes más cautivadores e ingeniosos de Stephen King; regresa en esta trepidante novela para descubrir la verdad que se esconde tras múltiples desapariciones en una ciudad del Medio Oeste. Cuando Penny Dahl contacta con Finders Keepers para que la ayuden a encontrar a su hija; algo en la voz desesperada de la mujer hace que Holly Gibney se vea obligada a aceptar el trabajo. A poca distancia del lugar en el que Bonnie Dahl desapareció; viven los profesores Rodney y Emily Harris. Son la quintaesencia de la respetabilidad burguesa: un matrimonio octogenario y dedicado de académicos semirretirados. Nadie diría que; en el sótano de su impecable casa forrada de libros; esconden un secreto directamente relacionado con la desaparición de Bonnie. Sin embargo; los Harris son astutos; pacientes y despiadados; y obligarán a Holly a emplear sus habilidades al máximo y a arriesgarlo todo si quiere cerrar el caso más oscuro al que se ha enfrentado jamás. «No podía olvidarme de Holly Gibney. Se suponía que solo iba a ser un personaje secundario en Mr. Mercedes; pero se llevó toda la atención y mi corazón. Holly es ella en estado puro». Stephen King",
+  "stock": 133
 }
 
 ### Actualizar un libro
-PATCH http://localhost:3000/books/4454554545444
+PATCH http://localhost:3000/books/9789878928319
 Content-Type: application/json
 
 {

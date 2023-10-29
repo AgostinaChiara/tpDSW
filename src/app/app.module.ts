@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,10 +14,11 @@ import { BookListComponent } from './pages/book-list/book-list/book-list.compone
 import { FeaturedBookComponent } from './components/featured-book/featured-book.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from './services/cart.service';
 import { BookService } from './services/book.service';
 import { LoginComponent } from './pages/login/login.component';
+import { CrudComponent } from './pages/crud/crud.component';
 
 
 @NgModule({
@@ -31,13 +33,16 @@ import { LoginComponent } from './pages/login/login.component';
     FeaturedBookComponent,
     CartComponent,
     LoginComponent,
+    CrudComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [CartService, BookService],
   bootstrap: [AppComponent]

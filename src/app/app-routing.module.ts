@@ -5,6 +5,7 @@ import { BookDetailComponent } from './pages/book-detail/book-detail.component';
 import { BookListComponent } from './pages/book-list/book-list/book-list.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CrudComponent } from './pages/crud/crud.component';
 
 const routes: Routes = [{
   path: 'home',
@@ -29,6 +30,10 @@ const routes: Routes = [{
 {
   path: 'login',
   component: LoginComponent
+},
+{
+  path: 'crud',
+  component: CrudComponent
 },
 {
   path: '', redirectTo: 'home', pathMatch: 'full'
