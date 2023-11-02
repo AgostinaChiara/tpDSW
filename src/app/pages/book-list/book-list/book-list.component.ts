@@ -14,15 +14,20 @@ export class BookListComponent implements OnInit {
   books: Book[] | any;
   category: string | any;
   searchText: string | any;
-  sort: string | any;
+  sort: string = "revelance";
 
   constructor(private _bookService: BookService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.searchText = this.activatedRoute.snapshot.queryParamMap.get('keywords');
-    this.category = this.activatedRoute.snapshot.params['category']
+    this.activatedRoute.params.subscribe(params => {
+      this.category = params['category'];
+      this.getBooks();
+    });
 
-    this.getBooks();
+    this.activatedRoute.queryParams.subscribe(queryParams => {
+      this.searchText = queryParams['keywords'];
+      this.getBooks();
+    });
   }
 
 
@@ -36,10 +41,14 @@ export class BookListComponent implements OnInit {
         this.books = data;
       });
     } else {
-      this._bookService.getBooks().subscribe((data) => {
+      this._bookService.getBooks(this.sort).subscribe((data) => {
         this.books = data;
       });
     }
+  }
+
+  changeOrderBy() {
+    this.getBooks();
   }
 }
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book } from '../models/book.model';
 
@@ -16,8 +16,8 @@ export class BookService {
     this.myApiUrl = 'books/'
   }
 
-  getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(`http://localhost:3000/books/`)
+  getBooks(order: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`http://localhost:3000/books?orderBy=${order}`)
   }
 
   getCategoryBooks(name:string): Observable<Book[]> {
@@ -29,7 +29,9 @@ export class BookService {
   }
 
   getFeaturedBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:3000/books?limit=4')
+    return this.http.get<Book[]>('http://localhost:3000/books?limit=4').pipe(
+      map(books => books.map(each => ({...each, description: each.description.slice(0,200)})))
+    )
   }
 
   getOne(isbn: string): Observable<Book> {
@@ -40,8 +42,12 @@ export class BookService {
     return this.http.post<Book>(`http://localhost:3000/books/`, book);
   }
 
-  deleteProduct(isbn: number): Observable<Book> {
+  deleteBook(isbn: string): Observable<Book> {
     return this.http.delete<Book>(`http://localhost:3000/books/${isbn}`);
+  }
+
+  updateBook(isbn: string, data: any): Observable<Book> {
+    return this.http.patch<Book>(`http://localhost:3000/books/${isbn}`, data);
   }
 
 }

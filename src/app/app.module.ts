@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +22,9 @@ import { CartService } from './services/cart.service';
 import { BookService } from './services/book.service';
 import { LoginComponent } from './pages/login/login.component';
 import { CrudComponent } from './pages/crud/crud.component';
+import { UpdatePageComponent } from './pages/crud/update-book/update-book.component';
+import { CreateBookComponent } from './pages/crud/create-book/create-book.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 @NgModule({
@@ -34,6 +40,9 @@ import { CrudComponent } from './pages/crud/crud.component';
     CartComponent,
     LoginComponent,
     CrudComponent,
+    UpdatePageComponent,
+    CreateBookComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +51,12 @@ import { CrudComponent } from './pages/crud/crud.component';
     BrowserAnimationsModule,
     FormsModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    ToastrModule.forRoot(),
+    NgSelectModule
   ],
-  providers: [CartService, BookService],
+  providers: [CartService, BookService, BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

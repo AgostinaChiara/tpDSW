@@ -6,8 +6,8 @@ export class BookController {
   }
 
   getAll = async (req, res) => {
-    const { cat, limit, keyword } = req.query
-    const books = await this.bookModel.getAll({ cat, limit, keyword })
+    const { cat, limit, keyword, orderBy } = req.query
+    const books = await this.bookModel.getAll({ cat, limit, keyword, orderBy })
     res.json(books)
   }
 
@@ -19,15 +19,14 @@ export class BookController {
   }
 
   getByCategory = async(req, res) => {
-    const { cat } = req.params
-    const book = await this.bookModel.getByCategory({ cat })
+    const { cat, order } = req.params
+    const book = await this.bookModel.getByCategory({ cat, order })
     if (book) return res.json(book)
     res.status(404).json({ message: 'Book not found' })
   }
 
   create = async (req, res) => {
     const result = validateBook(req.body)
-
     if (!result.success) {
     // 422 Unprocessable Entity
       return res.status(400).json({ error: JSON.parse(result.error.message) })
@@ -52,15 +51,19 @@ export class BookController {
 
   update = async (req, res) => {
     const result = validatePartialBook(req.body)
-
     if (!result.success) {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
 
     const { id } = req.params
 
-    const updatedBook = await this.bookModel.update({ id, input: result.data })
-
-    return res.json(updatedBook)
+    try {
+      console.log("controller id ", { id, input: result.data })
+      const updatedBook = await this.bookModel.update({ id, input: result.data });
+    
+      return res.json(updatedBook);
+    } catch (error) {
+      return res.status(500).json({ error: 'Error al actualizar el libro' });
+    }
   }
 }

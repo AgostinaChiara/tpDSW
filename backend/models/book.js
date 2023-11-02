@@ -12,7 +12,7 @@ const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
 const connection = await mysql.createConnection(connectionString)
 
 export class BookModel {
-  static async getAll ({ cat, limit, keyword }) {
+  static async getAll ({ cat, limit, keyword, orderBy }) {
     if (cat) {
       const lowerCaseCat = cat.toLowerCase()
 
@@ -43,6 +43,25 @@ export class BookModel {
       return books
     }
 
+    let query = 'SELECT book.*, category.name FROM book INNER JOIN category ON category.id = book.category';
+    // Agregar ordenamiento
+    if (orderBy) {
+      switch (orderBy) {
+        case 'lowerPrice':
+          query += ' ORDER BY price ASC';
+          break;
+        case 'higherPrice':
+          query += ' ORDER BY price DESC';
+          break;
+        case 'relevance':
+          query += ' ORDER BY stock DESC';
+          break;
+      }
+
+      const [books] = await connection.query(query);
+      return books;
+    }
+
     if(limit) {
       const [books] = await connection.query(
         'SELECT * FROM book LIMIT ?',
@@ -60,7 +79,9 @@ export class BookModel {
   static async getById ({ id }) {
     const [books] = await connection.query(
       `SELECT *
-       FROM book WHERE ? = isbn;`,
+       FROM book 
+       INNER JOIN category ON category.id = book.category
+       WHERE ? = isbn;`,
       [id]
     )
 
@@ -147,7 +168,21 @@ export class BookModel {
       // Si no se actualizó ningún libro (el ISBN no se encontró), puedes manejarlo como quieras.
       throw new Error('No se encontró ningún libro para actualizar.');
     }
+
+    const [updatedBooks] = await connection.query(
+      `SELECT *
+       FROM book 
+       INNER JOIN category ON category.id = book.category
+       WHERE isbn = ?;`,
+      [id]
+    );
+
+    if (updatedBooks.length === 0) return null;
+
+    return updatedBooks[0];
+    
   } catch (e) {
+    console.error('error', e.message)
     throw new Error('Error al actualizar el libro: ' + e.message);
   }
   }

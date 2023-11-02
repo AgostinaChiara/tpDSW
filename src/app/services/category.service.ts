@@ -23,7 +23,7 @@ export class CategoryService {
   }
 
   getOne(id: string): Observable<Category> {
-    return this.http.get<Category>(`http://localhost:3000/books/${id}`);
+    return this.http.get<Category>(`http://localhost:3000/category/${id}`);
   }
 }
 

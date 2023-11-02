@@ -4,4 +4,6 @@ import { BookModel } from './models/book.js'
 
 import { CategoryModel } from './models/category.js'
 
-createApp({ bookModel: BookModel, categoryModel: CategoryModel })
+import { UserModel } from './models/user.js'
+
+createApp({ bookModel: BookModel, categoryModel: CategoryModel, userModel: UserModel })

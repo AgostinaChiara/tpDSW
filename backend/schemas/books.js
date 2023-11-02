@@ -8,11 +8,11 @@ const bookSchema = z.object({
   }),
   year: z.number().int(),
   author: z.string(),
-  image: z.string().url({
-    message: 'Poster must be a valid URL'
-  }),
+  image: z.string(),
   price: z.number().positive(),
-  category: z.string(),
+  category: z.string({
+    message: 'Category is not a string'
+  }),
   publisher: z.number().int(),
   cover: z.string(),
   pages: z.number().int().positive(),
@@ -22,9 +22,19 @@ const bookSchema = z.object({
 })
 
 export function validateBook (input) {
-  return bookSchema.safeParse(input)
+  const result = bookSchema.safeParse(input);
+
+  if(!result.success) {
+    console.log('Validation Errors: ', result.error)
+  }
+  return result
 }
 
 export function validatePartialBook (input) {
-  return bookSchema.partial().safeParse(input)
+  const result = bookSchema.partial().safeParse(input)
+
+  if(!result.success) {
+    console.log('Validation Errors: ', result.error)
+  }
+  return result
 }

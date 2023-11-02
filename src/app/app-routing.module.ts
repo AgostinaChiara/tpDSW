@@ -6,6 +6,9 @@ import { BookListComponent } from './pages/book-list/book-list/book-list.compone
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CrudComponent } from './pages/crud/crud.component';
+import { UpdatePageComponent } from './pages/crud/update-book/update-book.component';
+import { CreateBookComponent } from './pages/crud/create-book/create-book.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [{
   path: 'home',
@@ -32,8 +35,20 @@ const routes: Routes = [{
   component: LoginComponent
 },
 {
+  path: 'register',
+  component: RegisterComponent
+},
+{
   path: 'crud',
   component: CrudComponent
+},
+{
+  path: 'crud/create',
+  component: CreateBookComponent
+},
+{
+  path: 'update/:isbn',
+  component: UpdatePageComponent
 },
 {
   path: '', redirectTo: 'home', pathMatch: 'full'

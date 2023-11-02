@@ -1,7 +1,7 @@
 import z from 'zod'
 
 const categorySchema = z.object({ 
-  id: z.number().int().positive(),
+  id: z.string(),
   name: z.string({
     invalid_type_error: 'Book title must be a string',
     required_error: 'Book title is required.'

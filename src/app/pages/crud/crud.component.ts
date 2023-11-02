@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Book } from 'src/app/models/book.model';
 import { Category } from 'src/app/models/category.model';
 import { BookService } from 'src/app/services/book.service';
@@ -16,41 +16,7 @@ export class CrudComponent implements OnInit {
   categories: Category[] | any;
   page: number = 1;
 
-  createForm: FormGroup | any;
-  updateForm: FormGroup | any;
-
-  constructor(private _bookService: BookService, private _catService: CategoryService, private fb: FormBuilder) {
-    this.createForm = this.fb.group({
-      isbn: ['', Validators.required],
-      title: ['', Validators.required],
-      year: ['', Validators.required],
-      author: ['', Validators.required],
-      image: ['', Validators.required],
-      price: ['', Validators.required],
-      category: ['', Validators.required],
-      publisher: ['', Validators.required],
-      cover: ['', Validators.required],
-      pages: ['', Validators.required],
-      language: ['', Validators.required],
-      description: ['', Validators.required],
-      stock: ['', Validators.required],
-    });
-
-    this.updateForm = this.fb.group({
-      isbn: ['', Validators.required],
-      title: ['', Validators.required],
-      year: ['', Validators.required],
-      author: ['', Validators.required],
-      image: ['', Validators.required],
-      price: ['', Validators.required],
-      category: ['', Validators.required],
-      publisher: ['', Validators.required],
-      cover: ['', Validators.required],
-      pages: ['', Validators.required],
-      language: ['', Validators.required],
-      description: ['', Validators.required],
-      stock: ['', Validators.required],
-    })
+  constructor(private _bookService: BookService, private _catService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -59,7 +25,7 @@ export class CrudComponent implements OnInit {
   }
 
   getBooks() {
-    this._bookService.getBooks().subscribe((data) => {
+    this._bookService.getBooks("relevance").subscribe((data) => {
       this.books = data;
     });
   }
@@ -76,14 +42,12 @@ export class CrudComponent implements OnInit {
     })
   }
 
-  onCreateBook() {
-    console.log(this.createForm.value)
-    this._bookService.createBook(this.createForm.value).subscribe(res => {
-      console.log(this.createForm.value)
-    });
-  }
-
-  onUpdateBook() {
-    console.log(this.updateForm.value)
+  onDeleteBook(isbn: string) {
+    if(confirm('Are you sure?')) {
+      this._bookService.deleteBook(isbn).subscribe(res => {
+        console.log(`Book with ISBN ${isbn} has been deleted.`);
+        this.books = this.books.filter((book: Book) => book.isbn !== isbn);
+      })
+    }
   }
 }

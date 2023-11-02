@@ -1,0 +1,69 @@
+<div class="create-page">
+  <div class="container">
+    <h2 class="fw-bold text-center">Create Book</h2>
+    <form class="row g-3" [formGroup]="createForm" (ngSubmit)="onCreateBook()">
+      <div class="col-md-3 mb-3">
+        <label for="book-isbn" class="col-form-label fw-bold">ISBN</label>
+        <input type="text" class="form-control" formControlName="isbn" id="book-isbn">
+      </div>
+      <div class="col-md-9 mb-3">
+        <label for="book-title" class="col-form-label fw-bold">Title</label>
+        <input type="text" class="form-control" formControlName="title" id="book-title">
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="book-image" class="col-form-label fw-bold">Image</label>
+        <input type="text" class="form-control" formControlName="image" id="book-image" placeholder="http://image.jpg">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="book-price" class="col-form-label fw-bold">Price</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input type="number" class="form-control" formControlName="price" id="book-price" placeholder="0000">
+        </div>
+      </div>
+      <div class="col-md-8 mb-3">
+        <label for="book-categ" class="col-form-label fw-bold">Category</label>
+        <select id="book-categ" class="form-select" formControlName="category" placeholder="Choose one">
+          <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="book-pages" class="col-form-label fw-bold">Pages</label>
+        <input type="number" class="form-control" formControlName="pages" id="book-pages">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="book-year" class="col-form-label fw-bold">Year</label>
+        <input type="number" class="form-control" formControlName="year" id="book-year">
+      </div>
+      <div class=" col-md-6 mb-3">
+        <label for="book-lang" class="col-form-label fw-bold">Language</label>
+        <input type="text" class="form-control" formControlName="language" id="book-lang">
+      </div>
+      <div class="mb-3">
+        <label for="book-desc" class="col-form-label fw-bold">Description</label>
+        <textarea class="form-control" formControlName="description" id="book-desc"></textarea>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="book-stock" class="col-form-label fw-bold">Stock</label>
+        <input type="number" class="form-control" formControlName="stock" id="book-stock">
+      </div>
+      <div class="col-md-8 mb-3">
+        <label for="book-publ" class="col-form-label fw-bold">Publisher</label>
+        <input type="number" class="form-control" formControlName="publisher" id="book-publisher">
+        <!-- <select id="book-publisher" formControlName="publisher" class="form-select">
+                    <option selected>Choose...</option>
+                    <option [value]="1">1</option>
+                  </select> -->
+      </div>
+      <div class="col-md-8 mb-3">
+        <label for="book-author" class="col-form-label fw-bold">Author</label>
+        <input type="text" class="form-control" formControlName="author" id="book-author">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="book-cover" class="col-form-label fw-bold">Cover</label>
+        <input type="text" class="form-control" formControlName="cover" id="book-cover">
+      </div>
+      <button type="submit" class="btn btn-outline-success">Submit</button>
+    </form>
+  </div>
+</div>
