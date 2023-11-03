@@ -12,103 +12,72 @@ const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
 const connection = await mysql.createConnection(connectionString)
 
 export class UserModel {
-  static async getAll () {
-    const [users] = await connection.query(
-      `SELECT * FROM user;`
-    )
-    return users;
-  }
-
-  static async getById ({ username }) {
-    const [users] = await connection.query(
-      `SELECT *
-       FROM user 
-       WHERE ? = username;`,
-      [username]
-    )
-
-    if (users.length === 0) return null
-
-    return users[0]
-  }
-
-  static async getByEmail ({ email }) {
-    const [users] = await connection.query(
-      `SELECT * FROM user 
-      WHERE email = ?;`,
-      [email]
-    )
-
-    if (users.length === 0) return null
-
-    return users
-  }
-
-  static async create ({ input }) {
-    const {
-      username,
-      email,
-      password,
-      role
-    } = input
-
+  static async register({ username, email, password, role }) {
     try {
+      console.log({username, email, password, role})
       await connection.query(
         `INSERT INTO user (username, email, password, role)
           VALUES (?, ?, ?, ?);`,
         [username, email, password, role]
-      )
+      );
     } catch (e) {
-      throw new Error('Error creating user ' + e.message)
+      throw new Error('Error registering user ' + e.message);
     }
   }
 
-  static async delete ({ username }) {
-    const [users] = await connection.query(
-      `DELETE FROM user WHERE ? = username;`,
-      [username]
-    )
-
-    if (users.length === 0) return null
-
-    return users[0]
-  }
-
-  static async update ({ id, input }) {
-    const {
-      username,
-      email,
-      password,
-      role
-    } = input
-
+  static async login({ username, password }) {
     try {
-    const [result] = await connection.query(
-      `UPDATE user
-       SET username = ?, email = ?, password = ?, role = ?
-       WHERE username = ?;`,
-      [username, email, password, role, id]
-    );
-
-    if (result.affectedRows === 0) {
-      // Si no se actualizó ningún usuario (el username no se encontró), puedes manejarlo como quieras.
-      throw new Error('No se encontró ningún usuario para actualizar.');
+      const [user] = await connection.query(
+        `SELECT * FROM user WHERE username = ? AND password = ?;`,
+        [username, password]
+      );
+      console.log(user)
+      
+      if (user.length === 0) return null;
+  
+      return user[0];
+    } catch(error) {
+      console.error('Error en la consulta sql ' + error.message)
+      throw error
     }
+  }
 
-    const [updatedUsers] = await connection.query(
-      `SELECT *
-       FROM user
-       WHERE username = ?;`,
+  static async deleteUser({ id }) {
+    const [user] = await connection.query(
+      `DELETE FROM user WHERE id = ?;`,
       [id]
     );
 
-    if (updatedUsers.length === 0) return null;
+    if (user.length === 0) return null;
 
-    return updatedUsers[0];
-    
-  } catch (e) {
-    console.error('error', e.message)
-    throw new Error('Error al actualizar el usuario: ' + e.message);
+    return user[0];
   }
+
+  static async updateUser({ id, updates }) {
+    const { username, email, password, role } = updates;
+
+    try {
+      const [result] = await connection.query(
+        `UPDATE user
+         SET username = ?, email = ?, password = ?, role = ?
+         WHERE id = ?;`,
+        [username, email, password, role, id]
+      );
+
+      if (result.affectedRows === 0) {
+        throw new Error('No se encontró ningún usuario para actualizar.');
+      }
+
+      const [updatedUser] = await connection.query(
+        `SELECT * FROM user WHERE id = ?;`,
+        [id]
+      );
+
+      if (updatedUser.length === 0) return null;
+
+      return updatedUser[0];
+    } catch (e) {
+      throw new Error('Error al actualizar el usuario: ' + e.message);
+    }
   }
 }

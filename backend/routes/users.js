@@ -6,13 +6,10 @@ export const createUserRouter = ({ userModel }) => {
 
   const userController = new UserController({ userModel })
 
-  usersRouter.get('/', userController.getAll)
-  usersRouter.post('/', userController.create)
-
-  usersRouter.get('/:id', userController.getByUser)
-  usersRouter.delete('/:id', userController.delete)
-  usersRouter.patch('/:id', userController.update)
-
+  usersRouter.post('/register', userController.register);
+  usersRouter.post('/login', userController.login);
+  usersRouter.delete('/:id', userController.deleteUser);
+  usersRouter.patch('/:id', userController.updateUser);
 
   return usersRouter
 }
