@@ -11,7 +11,11 @@ export class UserController {
       await this.userModel.register({ username, email, password, role });
       res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-      res.status(500).json({ error: 'Error registering user' });
+      if(error.message === 'Email is already in use.') {
+        res.status(400).json({ error: 'Email is already in use.'})
+      } else {
+        res.status(500).json({ error: 'Error registering user' });
+      }
     }
   }
 

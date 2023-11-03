@@ -12,7 +12,24 @@ const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
 const connection = await mysql.createConnection(connectionString)
 
 export class UserModel {
+  static async getByEmail(email) {
+    const [existingUser] = await connection.query(
+      `SELECT username 
+      FROM user
+      WHERE email = ?`,
+      [email]
+    )
+    return existingUser.length > 0
+  }
+
   static async register({ username, email, password, role }) {
+    //Verifica si el email ya esta en uso
+    const emailInUse = await this.getByEmail(email);
+    if(email) {
+      throw new Error('Email is already in use.')
+    }
+    
+    
     try {
       console.log({username, email, password, role})
       await connection.query(
@@ -31,7 +48,7 @@ export class UserModel {
         `SELECT * FROM user WHERE username = ? AND password = ?;`,
         [username, password]
       );
-      console.log(user)
+      console.log("service login", user)
       
       if (user.length === 0) return null;
   

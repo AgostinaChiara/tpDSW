@@ -6,18 +6,22 @@
       </div>
       <h2 class="fw-bold text-center py-5">Create your account!</h2>.
 
-      <form action="">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="text" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="username">
+        </div>
         <div class="mb-4">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email">
+          <input type="email" class="form-control" formControlName="email">
         </div>
         <div class="mb-4">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password">
+          <input type="password" class="form-control" formControlName="password">
         </div>
 
         <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Log In</button>
+          <button type="submit" class="btn btn-primary">Register</button>
         </div>
 
         <div class="my-3">

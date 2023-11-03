@@ -6,14 +6,14 @@
       </div>
       <h2 class="fw-bold text-center py-5">Welcome</h2>.
 
-      <form action="">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email">
+          <label for="text" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="username">
         </div>
         <div class="mb-4">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password">
+          <input type="password" class="form-control" formControlName="password">
         </div>
         
         <div class="d-grid">
