@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
 import { BookService } from 'src/app/services/book.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -14,7 +15,8 @@ export class CreateBookComponent implements OnInit {
 
   createForm: FormGroup | any;
 
-  constructor(private _bookService: BookService, private _catService: CategoryService, private fb: FormBuilder,) {
+  constructor(private _bookService: BookService, private _catService: CategoryService, private fb: FormBuilder,
+              private router: Router) {
     this.createForm = this.fb.group({
       isbn: ['', Validators.required],
       title: ['', Validators.required],
@@ -45,6 +47,7 @@ export class CreateBookComponent implements OnInit {
   onCreateBook() {
     console.log(this.createForm.value)
     this._bookService.createBook(this.createForm.value).subscribe(res => {
+      this.router.navigate(['/', 'crud'])
       console.log(this.createForm.value)
     });
   }

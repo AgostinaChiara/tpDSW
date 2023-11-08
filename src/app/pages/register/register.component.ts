@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,8 +12,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup | any;
+  loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private _userService: UserService,  private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private _userService: UserService,  
+              private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
@@ -25,15 +29,18 @@ export class RegisterComponent {
         const userData = this.registerForm.value;
 
         userData.role = 'user';
-        console.log(userData)
-        this._userService.registerUser(userData).subscribe({
+        this.loading = true;
+        this._userService.loginUser(userData).subscribe({
           next: (data) => {
-            console.log("User Registration complete!", data)
+            this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
+            this.loading = false;
+            this.router.navigate(['/', 'login'])
           },
-          error: (error) => {
-            console.error("Something went wrong", error)
-          }
-        });
+           error: (error) => {
+             console.error("Something went wrong", error)
+             this.toastr.error('Todos los campos son obligatorios', 'Error')
+           }
+        })        
       }
     } catch(error) {
       console.error('error', error);

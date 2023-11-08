@@ -53,12 +53,12 @@
       <a href="">Ver medios de pago</a>
       <p class="fw-bold">Stock disponible</p>
       <p>Cantidad:</p>
-      <select class="form-select mb-3" name="quantities" >
-        <option selected>1 Unidad</option>
-        <option value="1">2 Unidades</option>
-        <option value="2">3 Unidades</option>
-        <option value="3">4 Unidades</option>
-        <option value="3">5 Unidades</option>
+      <select class="form-select mb-3" name="quantities" [(ngModel)]="selectedQuantity">
+        <option selected value="1">1 Unidad</option>
+        <option value="2">2 Unidades</option>
+        <option value="3">3 Unidades</option>
+        <option value="4">4 Unidades</option>
+        <option value="5">5 Unidades</option>
       </select>
       <div class="d-grid gap-3 col-9 mx-auto">
         <button class="btn buy-button" type="button">Comprar ahora</button>

@@ -1,5 +1,5 @@
 ### Recuperar todas las películas
-GET http://localhost:3000/books
+GET http://localhost:3000/api/books
 
 ### Recuperar los libros destacados
 GET http://localhost:3000/books/featured/

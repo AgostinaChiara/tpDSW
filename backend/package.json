@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,10 +17,14 @@
     "express": "4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.1",
-    "nodemon": "^3.0.1",
+    "sequelize": "^6.34.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.14"
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.14",
+    "@types/jsonwebtoken": "^9.0.5",
+    "nodemon": "^3.0.1",
+    "typescript": "^5.2.2"
   }
 }

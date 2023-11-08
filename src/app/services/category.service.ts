@@ -15,15 +15,27 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { 
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'category/'
+    this.myApiUrl = 'api/categories/'
   }
 
   getCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>(`http://localhost:3000/category/`);
+    return this.http.get<Category[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
 
   getOne(id: string): Observable<Category> {
-    return this.http.get<Category>(`http://localhost:3000/category/${id}`);
+    return this.http.get<Category>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+  }
+
+  deleteCategory(id: string): Observable<Category> {
+    return this.http.delete<Category>(`${this.myAppUrl}${this.myApiUrl}${id}`)
+  }
+
+  updateCategory(id: string, data: any): Observable<Category> {
+    return this.http.patch<Category>(`${this.myAppUrl}${this.myApiUrl}${id}`, data);
+  }
+
+  createCategory(cat: any): Observable<Category> {
+    return this.http.post<Category>(`${this.myAppUrl}${this.myApiUrl}`, cat);
   }
 }
 

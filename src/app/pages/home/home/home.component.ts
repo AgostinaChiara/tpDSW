@@ -19,14 +19,14 @@ export class HomeComponent implements OnInit {
   }
  
   getBooks() {
-    this._bookService.getBooks("relevance").subscribe((data) => {
+    this._bookService.getHomeBooks().subscribe((data) => {
       this.books = data;
     });
   }
 
   getFeaturedBook() {
     this._bookService.getFeaturedBooks().subscribe((data) => {
-      this.featuredBooks = data;
+    this.featuredBooks = data;
     });
   }
 }

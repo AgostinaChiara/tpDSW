@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -25,6 +25,11 @@ import { CrudComponent } from './pages/crud/crud.component';
 import { UpdatePageComponent } from './pages/crud/update-book/update-book.component';
 import { CreateBookComponent } from './pages/crud/create-book/create-book.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AddTokenInterceptor } from './utils/add-token.interceptor';
+import { CategoriesCrudComponent } from './pages/crud/categories-crud/categories-crud.component';
+import { CreateCategoryComponent } from './pages/crud/categories-crud/create-category/create-category.component';
+import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-category/update-category.component';
 
 
 @NgModule({
@@ -43,6 +48,10 @@ import { RegisterComponent } from './pages/register/register.component';
     UpdatePageComponent,
     CreateBookComponent,
     RegisterComponent,
+    SpinnerComponent,
+    CategoriesCrudComponent,
+    CreateCategoryComponent,
+    UpdateCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,10 +62,18 @@ import { RegisterComponent } from './pages/register/register.component';
     NgxPaginationModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-botton-right',
+      preventDuplicates: true
+    }),
     NgSelectModule
   ],
-  providers: [CartService, BookService, BsModalService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
+    CartService, 
+    BookService, 
+    BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

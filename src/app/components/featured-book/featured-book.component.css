@@ -12,3 +12,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+#limitDesc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2;
+  max-height: 5em;
+}

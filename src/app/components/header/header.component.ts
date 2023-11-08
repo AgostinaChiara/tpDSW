@@ -1,12 +1,13 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: [
-  ],
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
   inputText: string = '';
   categories: Category[] | any;
 
-  constructor(private _categoryService: CategoryService) { }
+  constructor(private _categoryService: CategoryService, private _userService: UserService,
+              private _authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -26,11 +28,27 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  // Método para comprobar si el usuario está autenticado
+  isAuthenticated(): boolean {
+    return this._authService.isAuthenticatedUser();
+  }
+
+  // Método para comprobar si el usuario es un administrador
+  isAdmin(): boolean {
+    return this._authService.isAdminUser();
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/'])
+  }
+
   @Output()
   searchTextChanged:EventEmitter<string> = new EventEmitter<string>();
 
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.inputText)
+    console.log(this.inputText)
   }
 
   @HostListener('document:scroll') scrollover() {

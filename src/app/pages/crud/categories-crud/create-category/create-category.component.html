@@ -1,0 +1,16 @@
+<div class="create-page">
+  <div class="container">
+    <h2 class="fw-bold text-center">Create Category</h2>
+    <form class="row g-3" [formGroup]="createForm" (ngSubmit)="onCreateCategory()">
+      <div class="col-md-3 mb-3">
+        <label for="category-id" class="col-form-label fw-bold">ID</label>
+        <input type="text" class="form-control" formControlName="id" id="category-id">
+      </div>
+      <div class="col-md-9 mb-3">
+        <label for="category-name" class="col-form-label fw-bold">Name</label>
+        <input type="text" class="form-control" formControlName="name" id="category-name">
+      </div>
+      <button type="submit" class="btn btn-outline-success">Submit</button>
+    </form>
+  </div>
+</div>

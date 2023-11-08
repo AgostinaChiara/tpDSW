@@ -13,8 +13,10 @@ import { BookService } from 'src/app/services/book.service';
 export class BookListComponent implements OnInit {
   books: Book[] | any;
   category: string | any;
+
   searchText: string | any;
-  sort: string = "revelance";
+  sort: string = "relevance";
+  page: number = 1;
 
   constructor(private _bookService: BookService, private activatedRoute: ActivatedRoute) {}
 
@@ -25,7 +27,7 @@ export class BookListComponent implements OnInit {
     });
 
     this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.searchText = queryParams['keywords'];
+      this.searchText = queryParams['name'];
       this.getBooks();
     });
   }
@@ -33,7 +35,10 @@ export class BookListComponent implements OnInit {
 
   getBooks() {
     if(this.searchText) {
+      console.log('buscando libros por nombre')
+      console.log(this.searchText)
       this._bookService.getSearchedBooks(this.searchText).subscribe((data) => {
+        
         this.books = data;
       })
     } else if(this.category) {

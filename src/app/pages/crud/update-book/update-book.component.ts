@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/models/book.model';
 import { Category } from 'src/app/models/category.model';
 import { BookService } from 'src/app/services/book.service';
@@ -24,7 +24,8 @@ export class UpdatePageComponent implements OnInit {
   cat$: Observable<Category[]> | undefined;
   selectedCatId: string = '';
 
-  constructor(private route: ActivatedRoute, private _bookService: BookService, private _catService: CategoryService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private _bookService: BookService, private _catService: CategoryService, 
+              private fb: FormBuilder, private router: Router) {
     this.updateForm = this.fb.group({
       isbn: ['', Validators.required],
       title: ['', Validators.required],
@@ -91,6 +92,7 @@ export class UpdatePageComponent implements OnInit {
         this._bookService.updateBook(this.isbn, this.updateForm.value).subscribe({
           next: (data) => {
             console.log("Book updated", data)
+            this.router.navigate(['/', 'crud'])
           },
           error: (error) => {
             console.error("Something went wrong", error)

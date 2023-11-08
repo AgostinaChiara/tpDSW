@@ -19,18 +19,24 @@
             Categorias
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-            <li *ngFor="let category of categories"><a class="dropdown-item" [routerLink]="['/list', category.name]">{{category.name}}</a></li>
+            <li *ngFor="let category of categories"><a class="dropdown-item" [routerLink]="['/list', category.id]">{{category.name}}</a></li>
           </ul>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link active" aria-current="page" routerLink="crud">Dashboard</a>
         </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" [(ngModel)]="inputText" (input)="onSearchTextChanged()" placeholder="Buscar" aria-label="Search" name="searchText">
-        <button class="btn btn-outline-success" type="submit" [routerLink]="['/list']" [queryParams]="{keywords: inputText}" >Buscar</button>
-        <a class="navbar-user" routerLink="login">
+        <button class="btn btn-outline-success" type="submit" [routerLink]="['/list']" [queryParams]="{name: inputText}" >Buscar</button>
+        <a class="navbar-user" routerLink="login" *ngIf="!isAuthenticated()">
           <img width="30" height="30"
             src="https://img.icons8.com/?size=32&id=15263&format=png"
             alt="Usuario">
         </a>
+        <div *ngIf="isAuthenticated()">
+          <button class="btn btn-outline-success" type="submit" (click)="logOut()">Log Out</button>
+        </div>
         <a class="navbar-cart" routerLink="cart">
           <img width="30" height="30"
             src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/32/external-line-travel-tanah-basah-basic-outline-tanah-basah-88.png"

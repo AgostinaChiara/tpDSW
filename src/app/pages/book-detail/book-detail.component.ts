@@ -1,5 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
@@ -13,6 +14,7 @@ import { CartService } from 'src/app/services/cart.service';
 
 export class BookDetailComponent implements OnInit {
   bookData: Book | any = {};
+  selectedQuantity: number = 1;
   isbn: string = '';
 
   constructor(private route: ActivatedRoute, private _bookService: BookService, private cartService: CartService) { }
@@ -33,7 +35,7 @@ export class BookDetailComponent implements OnInit {
       product: book.image,
       name: book.title,
       price: book.price,
-      quantity: 1,
+      quantity: this.selectedQuantity,
       id: book.isbn,
       stock: book.stock
     })

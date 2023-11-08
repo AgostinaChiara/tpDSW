@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book } from '../models/book.model';
 
@@ -13,41 +13,50 @@ export class BookService {
 
   constructor(private http: HttpClient) { 
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'books/'
+    this.myApiUrl = 'api/books/'
   }
 
-  getBooks(order: string): Observable<Book[]> {
-    return this.http.get<Book[]>(`http://localhost:3000/books?orderBy=${order}`)
-  }
-
-  getCategoryBooks(name:string): Observable<Book[]> {
-    return this.http.get<Book[]>(`http://localhost:3000/books/categories/${name}`)
+  getBooks(sort: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.myAppUrl}${this.myApiUrl}`, {
+      params: { orderBy: sort }, 
+    })
   }
 
   getSearchedBooks(searchedTxt: string) {
-    return this.http.get<Book[]>(`http://localhost:3000/books?keyword=${searchedTxt}`);
-  }
-
-  getFeaturedBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:3000/books?limit=4').pipe(
-      map(books => books.map(each => ({...each, description: each.description.slice(0,200)})))
-    )
+    return this.http.get<Book[]>(`${this.myAppUrl}api/books`, {
+      params: { name: searchedTxt }, 
+    });
   }
 
   getOne(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`http://localhost:3000/books/${isbn}`);
+    return this.http.get<Book>(`${this.myAppUrl}${this.myApiUrl}${isbn}`);
   }
 
-  createBook(book: any): Observable<Book> {
-    return this.http.post<Book>(`http://localhost:3000/books/`, book);
+  getCategoryBooks(id:string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.myAppUrl}${this.myApiUrl}categories/${id}`)
   }
 
   deleteBook(isbn: string): Observable<Book> {
-    return this.http.delete<Book>(`http://localhost:3000/books/${isbn}`);
+    return this.http.delete<Book>(`${this.myAppUrl}${this.myApiUrl}${isbn}`);
   }
 
   updateBook(isbn: string, data: any): Observable<Book> {
-    return this.http.patch<Book>(`http://localhost:3000/books/${isbn}`, data);
+    return this.http.patch<Book>(`${this.myAppUrl}${this.myApiUrl}${isbn}`, data);
   }
 
+  getFeaturedBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.myAppUrl}${this.myApiUrl}`, {
+      params: { limit: '4' }, 
+    })
+  }
+
+  getHomeBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.myAppUrl}${this.myApiUrl}`, {
+      params: { limit: '18' }, 
+    })
+  }
+
+  createBook(book: any): Observable<Book> {
+    return this.http.post<Book>(`${this.myAppUrl}${this.myApiUrl}`, book);
+  }
 }
