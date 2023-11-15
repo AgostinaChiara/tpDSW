@@ -62,7 +62,7 @@ export const getByCategory = async(req: Request, res: Response) => {
   const { cat } = req.params
   const book = await Book.findAll({
     where: {
-      category: cat
+      categoryId: cat
     }
   });
   if (book) return res.json(book)

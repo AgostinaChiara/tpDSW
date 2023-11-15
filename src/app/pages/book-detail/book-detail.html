@@ -1,8 +1,8 @@
 <div class="container book-details">
   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Library</li>
+      <li class="breadcrumb-item"><a routerLink="/list">Libros</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ bookData.title }}</li>
     </ol>
   </nav>
   <div class="row">
@@ -55,10 +55,10 @@
       <p>Cantidad:</p>
       <select class="form-select mb-3" name="quantities" [(ngModel)]="selectedQuantity">
         <option selected value="1">1 Unidad</option>
-        <option value="2">2 Unidades</option>
-        <option value="3">3 Unidades</option>
-        <option value="4">4 Unidades</option>
-        <option value="5">5 Unidades</option>
+        <option value=2>2 Unidades</option>
+        <option value=3>3 Unidades</option>
+        <option value=4>4 Unidades</option>
+        <option value=5>5 Unidades</option>
       </select>
       <div class="d-grid gap-3 col-9 mx-auto">
         <button class="btn buy-button" type="button">Comprar ahora</button>

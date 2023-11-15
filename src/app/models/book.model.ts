@@ -5,7 +5,7 @@ export interface Book {
   author: string;
   image: string;
   price: number;
-  category: string;
+  categoryId: number;
   publisher: number;
   cover: string;
   pages: number;

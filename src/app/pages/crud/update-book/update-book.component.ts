@@ -22,7 +22,7 @@ export class UpdatePageComponent implements OnInit {
   updateForm: FormGroup | any;
 
   cat$: Observable<Category[]> | undefined;
-  selectedCatId: string = '';
+  selectedCatId: number = 0;
 
   constructor(private route: ActivatedRoute, private _bookService: BookService, private _catService: CategoryService, 
               private fb: FormBuilder, private router: Router) {
@@ -33,7 +33,7 @@ export class UpdatePageComponent implements OnInit {
       author: ['', Validators.required],
       image: ['', Validators.required],
       price: ['', Validators.required],
-      category: ['', Validators.required],
+      categoryId: ['', Validators.required],
       publisher: ['', Validators.required],
       cover: ['', Validators.required],
       pages: ['', Validators.required],
@@ -57,7 +57,7 @@ export class UpdatePageComponent implements OnInit {
         switchMap((bookData) => {
           return forkJoin({
             bookData: of(bookData),
-            categoryData: this._catService.getOne(bookData.category)
+            categoryData: this._catService.getOne(bookData.categoryId)
           });
         })
       )
@@ -67,7 +67,6 @@ export class UpdatePageComponent implements OnInit {
         this.selectedCatId = data.categoryData.id;
 
         this.updateForm.patchValue(this.bookData);
-        console.log(this.categoryData);
       });
   }
 
@@ -78,7 +77,7 @@ export class UpdatePageComponent implements OnInit {
     })
   }
 
-  getCategory(id: string) {
+  getCategory(id: number) {
     this._catService.getOne(id).subscribe((data) => {
       this.categoryData = data;
     })

@@ -27,8 +27,8 @@ export const Book = sequelize.define('book', {
     type: DataTypes.FLOAT,
     allowNull: false
   },
-  category: {
-    type: DataTypes.STRING,
+  categoryId: {
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   publisher: {

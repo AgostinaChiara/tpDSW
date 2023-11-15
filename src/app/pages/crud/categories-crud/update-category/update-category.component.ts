@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class UpdateCategoryComponent implements OnInit {
   categoryData: Category | any;
-  id: string = '';
+  id: number = 0;
 
   updateForm: FormGroup | any;
 
@@ -29,7 +29,7 @@ export class UpdateCategoryComponent implements OnInit {
     this.getCategory(this.id);
   }
 
-  getCategory(id: string) {
+  getCategory(id: number) {
     this._catService.getOne(id).subscribe((data) => {
       this.categoryData = data;
       this.updateForm.patchValue(this.categoryData);

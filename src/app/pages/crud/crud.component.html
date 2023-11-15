@@ -27,7 +27,7 @@
         <td>{{book.year}}</td>
         <td>{{book.author}}</td>
         <td>{{book.price}}</td>
-        <td>{{book.category}}</td>
+        <td>{{book.categoryId}}</td>
         <td>{{book.publisher}}</td>
         <td>{{book.pages}}</td>
         <td>{{book.language}}</td>
@@ -41,4 +41,4 @@
   </table>
 </section>
 
-<pagination-controls (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next"></pagination-controls>
+<pagination-controls class="my-pagination" (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next"></pagination-controls>

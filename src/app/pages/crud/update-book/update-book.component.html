@@ -24,11 +24,8 @@
       </div>
       <div class="col-md-8 mb-3">
         <label for="book-categ" class="col-form-label">Category</label>
-        <ng-select [items]="cat$ | async" bindLabel="name" formControlName="category" autofocus bindValue="id" [(ngModel)]="selectedCatId">
+        <ng-select [items]="cat$ | async" bindLabel="name" formControlName="categoryId" autofocus bindValue="id" [(ngModel)]="selectedCatId">
         </ng-select>
-        <!-- <select id="book-categ" class="form-select" formControlName="category" [(ngModel)]="bookData.category"  placeholder="choose one">
-          <option *ngFor="let cat of categories" [value]="cat.name">{{cat.name}}</option>
-        </select> -->
       </div>
       <div class="col-md-3 mb-3">
         <label for="book-pages" class="col-form-label">Pages</label>
@@ -52,7 +49,7 @@
       </div>
       <div class="col-md-8 mb-3">
         <label for="book-publ" class="col-form-label">Publisher</label>
-        <input type="number" class="form-control" formControlName="publisher" id="book-publisher">
+        <input type="text" class="form-control" formControlName="publisher" id="book-publisher">
       </div>
       <div class="col-md-8 mb-3">
         <label for="book-author" class="col-form-label">Author</label>

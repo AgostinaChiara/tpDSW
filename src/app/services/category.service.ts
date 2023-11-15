@@ -22,15 +22,15 @@ export class CategoryService {
     return this.http.get<Category[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
 
-  getOne(id: string): Observable<Category> {
+  getOne(id: number): Observable<Category> {
     return this.http.get<Category>(`${this.myAppUrl}${this.myApiUrl}${id}`);
   }
 
-  deleteCategory(id: string): Observable<Category> {
+  deleteCategory(id: number): Observable<Category> {
     return this.http.delete<Category>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
-  updateCategory(id: string, data: any): Observable<Category> {
+  updateCategory(id: number, data: any): Observable<Category> {
     return this.http.patch<Category>(`${this.myAppUrl}${this.myApiUrl}${id}`, data);
   }
 

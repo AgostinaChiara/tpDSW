@@ -24,7 +24,7 @@ export class CategoriesCrudComponent implements OnInit{
     })
   }
 
-  onDeleteCat(id: string) {
+  onDeleteCat(id: number) {
     if(confirm('Are you sure?')) {
       this._catService.deleteCategory(id).subscribe(res => {
         console.log(`Category with id ${id} has been deleted.`);

@@ -31,6 +31,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   onAddToCart(book: Book) {
+    console.log('Before addToCart: ', this.selectedQuantity, typeof this.selectedQuantity);
     this.cartService.addToCart({
       product: book.image,
       name: book.title,
@@ -39,5 +40,6 @@ export class BookDetailComponent implements OnInit {
       id: book.isbn,
       stock: book.stock
     })
+    console.log('After addToCart: ', this.selectedQuantity, typeof this.selectedQuantity);
    }
 }

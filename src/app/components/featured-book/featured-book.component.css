@@ -8,6 +8,10 @@
   max-height: 400px;
 }
 
+small {
+  padding-right: 5px;
+}
+
 a {
   text-decoration: none;
   color: inherit;

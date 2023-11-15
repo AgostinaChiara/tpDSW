@@ -32,8 +32,8 @@ exports.Book = connection_1.default.define('book', {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false
     },
-    category: {
-        type: sequelize_1.DataTypes.STRING,
+    categoryId: {
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     publisher: {

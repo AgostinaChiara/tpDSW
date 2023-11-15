@@ -65,7 +65,7 @@ const getByCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const { cat } = req.params;
     const book = yield book_1.Book.findAll({
         where: {
-            category: cat
+            categoryId: cat
         }
     });
     if (book)

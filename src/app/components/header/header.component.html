@@ -34,9 +34,11 @@
             src="https://img.icons8.com/?size=32&id=15263&format=png"
             alt="Usuario">
         </a>
-        <div *ngIf="isAuthenticated()">
-          <button class="btn btn-outline-success" type="submit" (click)="logOut()">Log Out</button>
-        </div>
+        <a class="navbar-logout" style="margin-left: 10px;" *ngIf="isAuthenticated()" (click)="logOut()">
+          <img width="30" height="30" 
+            src="https://img.icons8.com/ios/50/exit--v1.png" 
+            alt="Logout">
+        </a>
         <a class="navbar-cart" routerLink="cart">
           <img width="30" height="30"
             src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/32/external-line-travel-tanah-basah-basic-outline-tanah-basah-88.png"

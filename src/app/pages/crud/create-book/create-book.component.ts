@@ -24,7 +24,7 @@ export class CreateBookComponent implements OnInit {
       author: ['', Validators.required],
       image: ['', Validators.required],
       price: ['', Validators.required],
-      category: ['', Validators.required],
+      categoryId: ['', Validators.required],
       publisher: ['', Validators.required],
       cover: ['', Validators.required],
       pages: ['', Validators.required],

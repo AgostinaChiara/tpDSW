@@ -4,7 +4,7 @@
       <img src={{book.image}} alt="book-image" class="card-img-top cardImg">
       <div class="card-body">
         <small class="bg-light text-center text-decoration-line-through">{{book.price}}</small>
-        <small class="bg-light text-center ml-3 fw-bold fs-6">{{book.price}}</small>
+        <small class="bg-light text-center ml-3 fw-bold fs-6">{{book.price - (book.price * 0.20)}}</small>
 
         <h5 class="mt-1">{{book.title}}</h5>
         <p id="limitDesc">{{book.description}}</p>

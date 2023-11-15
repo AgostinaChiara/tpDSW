@@ -4,7 +4,7 @@
     <form class="row g-3" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
       <div class="col-md-3 mb-3">
         <label for="category-id" class="col-form-label">ID</label>
-        <input type="text" class="form-control" formControlName="id" id="category-id">
+        <input type="number" class="form-control" formControlName="id" id="category-id">
       </div>
       <div class="col-md-9 mb-3">
         <label for="category-name" class="col-form-label">Name</label>

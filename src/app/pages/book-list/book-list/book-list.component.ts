@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import  { filter } from 'rxjs/operators';
 
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-book-list',
@@ -11,19 +11,21 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  books: Book[] | any;
+  books: Book[] = [];
   category: string | any;
+  categoryName: string | any;
 
   searchText: string | any;
   sort: string = "relevance";
   page: number = 1;
 
-  constructor(private _bookService: BookService, private activatedRoute: ActivatedRoute) {}
+  constructor(private _bookService: BookService, private activatedRoute: ActivatedRoute, private _catService: CategoryService) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.category = params['category'];
       this.getBooks();
+      this.getCategory(this.category)
     });
 
     this.activatedRoute.queryParams.subscribe(queryParams => {
@@ -32,13 +34,9 @@ export class BookListComponent implements OnInit {
     });
   }
 
-
   getBooks() {
     if(this.searchText) {
-      console.log('buscando libros por nombre')
-      console.log(this.searchText)
       this._bookService.getSearchedBooks(this.searchText).subscribe((data) => {
-        
         this.books = data;
       })
     } else if(this.category) {
@@ -50,6 +48,12 @@ export class BookListComponent implements OnInit {
         this.books = data;
       });
     }
+  }
+
+  getCategory(id: number) {
+    this._catService.getOne(id).subscribe((data) => {
+      this.categoryName = data.name
+    })
   }
 
   changeOrderBy() {
