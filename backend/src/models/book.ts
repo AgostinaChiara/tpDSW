@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection';
+import { Category } from './category';
 
 export const Book = sequelize.define('book', {
   isbn: {
@@ -55,3 +56,5 @@ export const Book = sequelize.define('book', {
 },{
   timestamps: false
 })
+
+Book.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' });

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { Book } from '../models/book'
 import { Op } from 'sequelize';
+import { Category } from '../models/category';
 
 interface BookOptions {
   where?: any; 
@@ -41,7 +42,10 @@ export const getBooks = async (req: Request, res: Response) => {
   }
   
   try {
-    const listBooks = await Book.findAll(options);
+    const listBooks = await Book.findAll({
+      ...options,
+      include: [{model: Category, as: 'category', attributes: ['name']}]
+    });
     res.json(listBooks);
   } catch (error) {
     res.status(500).json({ error: 'Error en la consulta de libros' });

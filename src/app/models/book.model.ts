@@ -13,3 +13,7 @@ export interface Book {
   description: string;
   stock: number;
 }
+
+export interface BookWithCategoryName extends Book {
+  categoryName: string;
+}

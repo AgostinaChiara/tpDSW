@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book } from '../models/book.model';
+import { Book, BookWithCategoryName } from '../models/book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,12 @@ export class BookService {
       params: { name: searchedTxt }, 
     });
   }
+
+  getBooksWithCategoryName(sort: string): Observable<BookWithCategoryName[]> {
+  return this.http.get<BookWithCategoryName[]>(`${this.myAppUrl}${this.myApiUrl}`, {
+    params: { orderBy: sort }, 
+  });
+}
 
   getOne(isbn: string): Observable<Book> {
     return this.http.get<Book>(`${this.myAppUrl}${this.myApiUrl}${isbn}`);

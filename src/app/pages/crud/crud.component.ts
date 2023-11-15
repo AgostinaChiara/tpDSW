@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Book } from 'src/app/models/book.model';
+import { Book, BookWithCategoryName } from 'src/app/models/book.model';
 import { Category } from 'src/app/models/category.model';
 import { BookService } from 'src/app/services/book.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -11,7 +11,7 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent implements OnInit {
-  books: Book[] | any;
+  books: BookWithCategoryName[] | any;
   selectedBook: Book | any;
   categories: Category[] | any;
   page: number = 1;
@@ -25,7 +25,7 @@ export class CrudComponent implements OnInit {
   }
 
   getBooks() {
-    this._bookService.getBooks("relevance").subscribe((data) => {
+    this._bookService.getBooksWithCategoryName("relevance").subscribe((data) => {
       this.books = data;
     });
   }

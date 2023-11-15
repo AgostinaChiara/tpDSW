@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Book = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
+const category_1 = require("./category");
 exports.Book = connection_1.default.define('book', {
     isbn: {
         type: sequelize_1.DataTypes.STRING,
@@ -60,3 +61,4 @@ exports.Book = connection_1.default.define('book', {
 }, {
     timestamps: false
 });
+exports.Book.belongsTo(category_1.Category, { foreignKey: 'categoryId', as: 'category' });

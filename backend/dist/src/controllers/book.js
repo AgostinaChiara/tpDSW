@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteBook = exports.updateBook = exports.createBook = exports.getFeaturedBooks = exports.getByCategory = exports.getById = exports.getBooks = void 0;
 const book_1 = require("../models/book");
 const sequelize_1 = require("sequelize");
+const category_1 = require("../models/category");
 const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Obtenemos los parámetros de consulta de la solicitud
     const { name, limit, orderBy } = req.query;
@@ -42,7 +43,7 @@ const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         options.limit = parseInt(limit);
     }
     try {
-        const listBooks = yield book_1.Book.findAll(options);
+        const listBooks = yield book_1.Book.findAll(Object.assign(Object.assign({}, options), { include: [{ model: category_1.Category, as: 'category', attributes: ['name'] }] }));
         res.json(listBooks);
     }
     catch (error) {
