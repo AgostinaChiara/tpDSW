@@ -30,7 +30,7 @@ export class RegisterComponent {
 
         userData.role = 'user';
         this.loading = true;
-        this._userService.loginUser(userData).subscribe({
+        this._userService.registerUser(userData).subscribe({
           next: (data) => {
             this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
             this.loading = false;

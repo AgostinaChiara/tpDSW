@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
 
   constructor(private router: Router, private _userService: UserService,  private fb: FormBuilder,
@@ -20,6 +20,13 @@ export class LoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
+  }
+  ngOnInit(): void {
+    if (this.toastr) {
+    this.toastr.success('Hello, Toastr!');
+  } else {
+    console.error('ToastrService is not available');
+  }
   }
 
   onSubmit() {
@@ -34,7 +41,7 @@ export class LoginComponent {
           },
           error: (error) => {
             console.error("Something went wrong", error)
-            this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
+            this.toastr.error('Ocurrio un error!', 'Error')
           }
         });
       }

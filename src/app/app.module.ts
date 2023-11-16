@@ -65,7 +65,6 @@ import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-cat
     ToastrModule.forRoot({
       timeOut: 4000,
       positionClass: 'toast-botton-right',
-      preventDuplicates: true
     }),
     NgSelectModule
   ],
