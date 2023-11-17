@@ -24,26 +24,22 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    try {
-      if (this.registerForm.valid) {
-        const userData = this.registerForm.value;
+    if (this.registerForm.valid) {
+      const userData = this.registerForm.value;
 
-        userData.role = 'user';
-        this.loading = true;
-        this._userService.registerUser(userData).subscribe({
-          next: (data) => {
-            this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
-            this.loading = false;
-            this.router.navigate(['/', 'login'])
-          },
-           error: (error) => {
-             console.error("Something went wrong", error)
-             this.toastr.error('Todos los campos son obligatorios', 'Error')
-           }
-        })        
-      }
-    } catch(error) {
-      console.error('error', error);
+      userData.role = 'user';
+      this.loading = true;
+      this._userService.registerUser(userData).subscribe({
+        next: (data) => {
+          this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
+          this.loading = false;
+          this.router.navigate(['/', 'login'])
+        },
+          error: (error) => {
+            console.error("Something went wrong", error)
+            this.toastr.error('Todos los campos son obligatorios', 'Error')
+          }
+      })        
     }
   }
 }

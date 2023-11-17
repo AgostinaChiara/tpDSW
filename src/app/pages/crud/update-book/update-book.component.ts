@@ -73,7 +73,6 @@ export class UpdatePageComponent implements OnInit {
   getCategories() {
     this._catService.getCategory().subscribe((data) => {
       this.categories = data;
-      console.log(this.categories);
     })
   }
 
@@ -84,22 +83,16 @@ export class UpdatePageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.updateForm.value)
-
-    try {
-      if (this.updateForm.valid) {
-        this._bookService.updateBook(this.isbn, this.updateForm.value).subscribe({
-          next: (data) => {
-            console.log("Book updated", data)
-            this.router.navigate(['/', 'crud'])
-          },
-          error: (error) => {
-            console.error("Something went wrong", error)
-          }
-        });
-      }
-    } catch(error) {
-      console.error('error', error);
+    if (this.updateForm.valid) {
+      this._bookService.updateBook(this.isbn, this.updateForm.value).subscribe({
+        next: (data) => {
+          console.log("Book updated", data)
+          this.router.navigate(['/', 'crud'])
+        },
+        error: (error) => {
+          console.error("Something went wrong", error)
+        }
+      });
     }
   }
 }

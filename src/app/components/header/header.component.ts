@@ -49,7 +49,6 @@ export class HeaderComponent implements OnInit {
 
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.inputText)
-    console.log(this.inputText)
   }
 
   @HostListener('document:scroll') scrollover() {

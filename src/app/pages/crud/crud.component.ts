@@ -45,7 +45,6 @@ export class CrudComponent implements OnInit {
   onDeleteBook(isbn: string) {
     if(confirm('Are you sure?')) {
       this._bookService.deleteBook(isbn).subscribe(res => {
-        console.log(`Book with ISBN ${isbn} has been deleted.`);
         this.books = this.books.filter((book: Book) => book.isbn !== isbn);
       })
     }

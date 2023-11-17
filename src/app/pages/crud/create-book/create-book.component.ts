@@ -45,10 +45,8 @@ export class CreateBookComponent implements OnInit {
   }
 
   onCreateBook() {
-    console.log(this.createForm.value)
     this._bookService.createBook(this.createForm.value).subscribe(res => {
       this.router.navigate(['/', 'crud'])
-      console.log(this.createForm.value)
     });
   }
 }

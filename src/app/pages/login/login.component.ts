@@ -22,31 +22,22 @@ export class LoginComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    if (this.toastr) {
-    this.toastr.success('Hello, Toastr!');
-  } else {
-    console.error('ToastrService is not available');
-  }
+
   }
 
   onSubmit() {
-    try {
-      if (this.loginForm.valid) {
-        this._userService.loginUser(this.loginForm.value).subscribe({
-          next: (token) => {
-            localStorage.setItem('token', token);
-            this._authService.setAuth(true, true)
-            this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
-            this.router.navigate(['/'])
-          },
-          error: (error) => {
-            console.error("Something went wrong", error)
-            this.toastr.error('Ocurrio un error!', 'Error')
-          }
-        });
-      }
-    } catch(error) {
-      console.error('error', error);
+    if (this.loginForm.valid) {
+      this._userService.loginUser(this.loginForm.value).subscribe({
+        next: (token) => {
+          localStorage.setItem('token', token);
+          this._authService.setAuth(true, true)
+          this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
+          this.router.navigate(['/'])
+        },
+        error: (error) => {
+          this.toastr.error('Ocurrio un error!', 'Error')
+        }
+      });
     }
   }
 }

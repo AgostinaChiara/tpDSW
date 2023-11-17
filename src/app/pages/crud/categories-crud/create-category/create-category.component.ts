@@ -25,7 +25,6 @@ export class CreateCategoryComponent implements OnInit {
   onCreateCategory() {
     this._catService.createCategory(this.createForm.value).subscribe(res => {
       this.router.navigate(['/', 'crudCategory'])
-      console.log(this.createForm.value)
     });
   }
 }

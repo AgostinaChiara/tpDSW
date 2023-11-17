@@ -37,20 +37,15 @@ export class UpdateCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    try {
-      if (this.updateForm.valid) {
-        this._catService.updateCategory(this.id, this.updateForm.value).subscribe({
-          next: (data) => {
-            console.log("Category updated", data)
-            this.router.navigate(['/', 'crudCategory'])
-          },
-          error: (error) => {
-            console.error("Something went wrong", error)
-          }
-        });
-      }
-    } catch(error) {
-      console.error('error', error);
+    if (this.updateForm.valid) {
+      this._catService.updateCategory(this.id, this.updateForm.value).subscribe({
+        next: (data) => {
+          this.router.navigate(['/', 'crudCategory'])
+        },
+        error: (error) => {
+          console.error("Something went wrong", error)
+        }
+      });
     }
   }
 }
