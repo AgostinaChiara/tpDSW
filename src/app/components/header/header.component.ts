@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.removeItem('token');
+    this._authService.clearToken();
     this.router.navigate(['/']);
     location.reload();
   }

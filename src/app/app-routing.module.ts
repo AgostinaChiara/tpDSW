@@ -49,23 +49,28 @@ const routes: Routes = [{
 },
 {
   path: 'crudCategory',
-  component: CategoriesCrudComponent
+  component: CategoriesCrudComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'crud/create',
-  component: CreateBookComponent
+  component: CreateBookComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'crudCategory/create',
-  component: CreateCategoryComponent
+  component: CreateCategoryComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'update/:isbn',
-  component: UpdatePageComponent
+  component: UpdatePageComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'updateCategory/:id',
-  component: UpdateCategoryComponent
+  component: UpdateCategoryComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: '', redirectTo: 'home', pathMatch: 'full'

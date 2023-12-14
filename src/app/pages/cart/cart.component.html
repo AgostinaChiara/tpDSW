@@ -2,7 +2,7 @@
   <div class="cart-container">
     <ul class="tab-container">
       <li class="tab-li">
-        <span style="color: #3483fa;">Tu carrito ({{dataSource.length}})</span>
+        <span class="title-blue">Tu carrito ({{dataSource.length}})</span>
       </li>
     </ul>
     <div class="separator"></div>
@@ -24,8 +24,8 @@
             </div>
             <div class="item-cart-actions">
               <div class="actions-container">
-                <a (click)="onRemoveFromCart(item)"><span style="color: #3483fa;">Eliminar</span></a>
-                <a><span style="color: #3483fa;">Comprar ahora</span></a>
+                <a (click)="onRemoveFromCart(item)"><span class="title-blue">Eliminar</span></a>
+                <a><span class="title-blue">Comprar ahora</span></a>
               </div>
             </div>
           </div>
@@ -58,26 +58,24 @@
           </div>
         </div>
         
-        <div class="separator" style="margin: 0 0 48px;"></div>
+        <div class="separator mb-3"></div>
       </section>
     </div>
-    <div class="total-row">
+    <div class="total-row justify-content-between">
       <div class="text-div">
-        <h5 class="total-text" style="font-size: 26px;">
-          <span>Total</span>
+        <h5 class="total-text fs-3">
+          <span class="mr-1">Total</span>
         </h5>
       </div>
     
-      <div class="total-div">
+      <div class="total-div mr-3">
         <h6 class="total-text">
-          <span style="font-size: 26px;">{{getTotal(cart.items) | currency }}</span>
+          <span class="fs-3">{{getTotal(cart.items) | currency }}</span>
         </h6>
       </div>
 
-      <div class="separator" style="margin: 0 0 48px;"></div>
-
-      <div class="buy-container">
-        <button class="btn btn-primary" style="font-size: 18px; width: unset;">
+      <div class="buy-container mr-3 pr-3">
+        <button class="btn btn-primary fs-6">
           Comprar
         </button>
       </div>

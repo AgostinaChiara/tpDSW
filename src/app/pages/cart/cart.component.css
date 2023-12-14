@@ -1,3 +1,5 @@
+@import '../../../styles.css';
+
 .main-container {
   margin: auto;
   max-width: 1200px;
@@ -23,7 +25,7 @@
 }
 
 .tab-li {
-  border-color: #3483fa;
+  border-color: var(--color-title-cart);
   font-weight: 600;
   list-style: none;
   padding: 0 64px 15px;
@@ -95,9 +97,9 @@ img {
 }
 
 a {
-  fill: #3483fa;
+  fill: var(--color-title-cart);
   align-items: center;
-  color: #3483fa;
+  color: var(--color-title-cart);
   cursor: pointer;
   display: inline-flex;
   position: relative;
@@ -147,7 +149,7 @@ a {
   height: 100%;
   justify-content: center;
   box-sizing: border-box;
-  color: #3483fa;
+  color: var(--color-title-cart);
 }
 
 .form-control {
@@ -160,6 +162,10 @@ a {
   padding-top: 0;
   width: 74px;
   border: none;
+}
+
+.title-blue {
+  color: var(--color-title-cart);
 }
 
 .quantity-selector-message {
@@ -196,32 +202,21 @@ a {
 .total-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .text-div {
-  justify-content: flex-start;
   text-align: left;
 }
 
 .total-text {
   color: rgba(0, 0, 0, .9);
-  display: flex;
-  flex-direction: row;
-  font-size: 16px;
   font-weight: 400;
-  justify-content: flex-end;
   line-height: 1.25;
-  margin: 0;
-  padding: 0;
 }
 
 .total-div {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
-.total-row {
-  display: flex;
-  justify-content: space-between;
-}

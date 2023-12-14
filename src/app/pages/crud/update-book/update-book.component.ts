@@ -86,7 +86,6 @@ export class UpdatePageComponent implements OnInit {
     if (this.updateForm.valid) {
       this._bookService.updateBook(this.isbn, this.updateForm.value).subscribe({
         next: (data) => {
-          console.log("Book updated", data)
           this.router.navigate(['/', 'crud'])
         },
         error: (error) => {

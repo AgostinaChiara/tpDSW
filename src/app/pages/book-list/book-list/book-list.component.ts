@@ -19,7 +19,7 @@ export class BookListComponent implements OnInit {
   sort: string = "relevance";
   page: number = 1;
 
-  constructor(private _bookService: BookService, private activatedRoute: ActivatedRoute, private _catService: CategoryService) {}
+  constructor(private bookService: BookService, private activatedRoute: ActivatedRoute, private catService: CategoryService) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -36,22 +36,22 @@ export class BookListComponent implements OnInit {
 
   getBooks() {
     if(this.searchText) {
-      this._bookService.getSearchedBooks(this.searchText).subscribe((data) => {
+      this.bookService.getSearchedBooks(this.searchText).subscribe((data) => {
         this.books = data;
       })
     } else if(this.category) {
-      this._bookService.getCategoryBooks(this.category).subscribe((data) => {
+      this.bookService.getCategoryBooks(this.category).subscribe((data) => {
         this.books = data;
       });
     } else {
-      this._bookService.getBooks(this.sort).subscribe((data) => {
+      this.bookService.getBooks(this.sort).subscribe((data) => {
         this.books = data;
       });
     }
   }
 
   getCategory(id: number) {
-    this._catService.getOne(id).subscribe((data) => {
+    this.catService.getOne(id).subscribe((data) => {
       this.categoryName = data.name
     })
   }

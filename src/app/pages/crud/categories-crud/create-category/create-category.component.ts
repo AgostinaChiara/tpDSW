@@ -8,7 +8,7 @@ import { CategoryService } from 'src/app/services/category.service';
   templateUrl: `./create-category.component.html`,
   styleUrls: ['./create-category.component.css']
 })
-export class CreateCategoryComponent implements OnInit {
+export class CreateCategoryComponent {
   createForm: FormGroup | any;
 
   constructor(private _catService: CategoryService, private fb: FormBuilder, private router: Router) {
@@ -16,10 +16,6 @@ export class CreateCategoryComponent implements OnInit {
       id: ['', Validators.required],
       name: ['', Validators.required],
     });
-  }
-
-  ngOnInit(): void {
-  
   }
 
   onCreateCategory() {

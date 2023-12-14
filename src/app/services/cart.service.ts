@@ -22,7 +22,6 @@ export class CartService {
   }
 
   this.cart.next({ items });
-  console.log(this.cart.value)
   }
 
   removeQuantity(item: CartItem): void {

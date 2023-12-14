@@ -1,25 +1,47 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated: boolean = false;
-  private isAdmin: boolean = false;
+  private token: string | null = null;
 
-  // Método para establecer el estado de autenticación y el rol
-  setAuth(isAuthenticated: boolean, isAdmin: boolean) {
-    this.isAuthenticated = isAuthenticated;
-    this.isAdmin = isAdmin;
+  constructor( ) {
   }
 
-  // Método para obtener el estado de autenticación
+  setToken(token: string): void {
+    this.token = token;
+  }
+
+  getToken(): string | null {
+    return this.token;
+  }
+
+  clearToken(): void {
+    this.token = null;
+  }
+
   isAuthenticatedUser(): boolean {
-    return this.isAuthenticated;
+    return !!this.token;
   }
 
-  // Método para obtener el rol del usuario
   isAdminUser(): boolean {
-    return this.isAdmin;
+    const decodedToken = this.decodeToken();
+    console.log(decodedToken)
+    return decodedToken && decodedToken.role === 'admin';
+  }
+
+  private decodeToken(): any {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const jwtHelper = new JwtHelperService();
+        return jwtHelper.decodeToken(token)
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+    return null;
   }
 }

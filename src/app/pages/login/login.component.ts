@@ -11,26 +11,22 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup | any;
 
   constructor(private router: Router, private _userService: UserService,  private fb: FormBuilder,
-              private toastr: ToastrService, private _authService: AuthService) {
+              private toastr: ToastrService, private authService: AuthService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
-  }
-  ngOnInit(): void {
-
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
       this._userService.loginUser(this.loginForm.value).subscribe({
         next: (token) => {
-          localStorage.setItem('token', token);
-          this._authService.setAuth(true, true)
+          this.authService.setToken(token);
           this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
           this.router.navigate(['/'])
         },
