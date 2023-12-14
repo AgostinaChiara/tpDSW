@@ -83,16 +83,15 @@ export const createBook = async (req: Request, res: Response) => {
   const { body } = req;
 
   try {
-      await Book.create(body);
+    await Book.create(body);
 
-      res.json({
-          msg: `Book created successfully!`
-      })
+    res.status(201).json({
+      msg: `Book created successfully!`,
+    });
   } catch (error) {
-      console.log(error);
-      res.json({
-          msg: `Woo, there was an error`
-      })
+    res.status(500).json({
+      msg: `Oops, there was an error`,
+    });
   }
 }
 
@@ -101,26 +100,23 @@ export const updateBook = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
+    const book = await Book.findByPk(id);
 
-      const book = await Book.findByPk(id);
-
-  if(book) {
+    if(book) {
       await book.update(body);
-      res.json({
-          msg: 'El libro fue actualizado con exito'
-      })
-
-  } else {
+      res.status(200).json({
+        msg: 'The book was updated successfully',
+      });
+    } else {
       res.status(404).json({
-          msg: `No existe un libro con el isbn ${id}`
+          msg: `Book with ISBN ${id} not found`
       })
-  }
-      
+    }
   } catch (error) {
-      console.log(error);
-      res.json({
-          msg: `Upps ocurrio un error, comuniquese con soporte`
-      })
+    console.log(error);
+    res.status(404).json({
+        msg: `Book with ISBN ${id} not found`,
+      });
   }
 }
 
@@ -130,13 +126,12 @@ export const deleteBook = async (req: Request, res: Response) => {
 
   if (!book) {
       res.status(404).json({
-          msg: `No existe un libro con el isbn ${id}`
+          msg: `Book with ISBN ${id} not found`
       })
   } else {
       await book.destroy();
-      res.json({
-          msg: 'El libro fue eliminado con exito!'
+      res.status(200).json({
+          msg: 'Book deleted successfully!!'
       })
   }
-
 }

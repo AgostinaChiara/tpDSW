@@ -2,16 +2,19 @@ import { Request, Response } from 'express'
 import { Category } from '../models/category'
 
 export const getCategories = async (req: Request, res: Response) => {
-  const listCats = await Category.findAll();
-  
-  res.json(listCats)
+	try {
+		const listCats = await Category.findAll();
+		res.status(200).json(listCats);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+	}
 }
 
 export const getById = async (req: Request, res: Response) => {
   const { id } = req.params
   const cat = await Category.findByPk(id)
-  if (cat) return res.json(cat)
-  res.status(404).json({ message: 'Category not found' })
+  if (cat) return res.status(200).json(cat);
+  res.status(404).json({ error: 'Category not found' })
 }
 
 export const createCategory = async (req: Request, res: Response) => {
@@ -20,12 +23,11 @@ export const createCategory = async (req: Request, res: Response) => {
   try {
       await Category.create(body);
 
-      res.json({
+      res.status(201).json({
           msg: `Category created successfully!`
       })
   } catch (error) {
-      console.log(error);
-      res.json({
+      res.status(500).json({
           msg: `Woo, there was an error`
       })
   }
@@ -41,20 +43,19 @@ export const updateCategory = async (req: Request, res: Response) => {
 
   if(category) {
       await category.update(body);
-      res.json({
-          msg: 'La categoria fue actualizado con exito'
+      res.status(200).json({
+          msg: 'The category was updated successfully'
       })
 
   } else {
       res.status(404).json({
-          msg: `No existe una categoria con el id ${id}`
+          msg: `No category found with ID ${id}`
       })
   }
       
   } catch (error) {
-      console.log(error);
-      res.json({
-          msg: `Upps ocurrio un error, comuniquese con soporte`
+      res.status(500).json({
+          msg: `Oops, an error occurred. Please contact support.`
       })
   }
 }

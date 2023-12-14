@@ -83,14 +83,13 @@ const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const { body } = req;
     try {
         yield book_1.Book.create(body);
-        res.json({
-            msg: `Book created successfully!`
+        res.status(201).json({
+            msg: `Book created successfully!`,
         });
     }
     catch (error) {
-        console.log(error);
-        res.json({
-            msg: `Woo, there was an error`
+        res.status(500).json({
+            msg: `Oops, there was an error`,
         });
     }
 });
@@ -102,20 +101,20 @@ const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const book = yield book_1.Book.findByPk(id);
         if (book) {
             yield book.update(body);
-            res.json({
-                msg: 'El libro fue actualizado con exito'
+            res.status(200).json({
+                msg: 'The book was updated successfully',
             });
         }
         else {
             res.status(404).json({
-                msg: `No existe un libro con el isbn ${id}`
+                msg: `Book with ISBN ${id} not found`
             });
         }
     }
     catch (error) {
         console.log(error);
-        res.json({
-            msg: `Upps ocurrio un error, comuniquese con soporte`
+        res.status(404).json({
+            msg: `Book with ISBN ${id} not found`,
         });
     }
 });
@@ -125,13 +124,13 @@ const deleteBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const book = yield book_1.Book.findByPk(id);
     if (!book) {
         res.status(404).json({
-            msg: `No existe un libro con el isbn ${id}`
+            msg: `Book with ISBN ${id} not found`
         });
     }
     else {
         yield book.destroy();
-        res.json({
-            msg: 'El libro fue eliminado con exito!'
+        res.status(200).json({
+            msg: 'Book deleted successfully!!'
         });
     }
 });

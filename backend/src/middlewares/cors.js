@@ -1,6 +1,8 @@
 import cors from 'cors'
 
-const ACCEPTED_ORIGINS = [
+const ACCEPTED_ORIGINS = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS : 
+  [
   'http://localhost:8080',
   'http://localhost:1234',
   'http://localhost:3000',

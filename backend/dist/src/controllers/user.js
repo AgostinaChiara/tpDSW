@@ -30,7 +30,7 @@ const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     if (user) {
         res.status(400).json({
-            msg: `Ya existe un usuario con el nombre ${username} o email ${email}`
+            msg: `The username ${username} or email ${email} is already in use`
         });
     }
     const hashedPassword = yield bcrypt_1.default.hash(password, 10);
@@ -41,13 +41,13 @@ const newUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             password: hashedPassword,
             role: role
         });
-        res.json({
-            msg: `Usuario ${username} creado exitosamente`,
+        res.status(201).json({
+            msg: `User: ${username} created successfully`,
         });
     }
     catch (error) {
-        res.status(400).json({
-            msg: 'upss ocurrio un error', error
+        res.status(500).json({
+            msg: 'Oopss, there was an error', error
         });
     }
 });
@@ -58,14 +58,14 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_1.User.findOne({ where: { username: username } });
     if (!user) {
         return res.status(400).json({
-            msg: `No existe un usuario con el nombre ${username} en la base de datos`
+            msg: `The username ${username} does not exists`
         });
     }
     //Validamos password
     const passwordValid = yield bcrypt_1.default.compare(password, user.password);
     if (!passwordValid) {
         return res.status(400).json({
-            msg: `Password incorrecta`
+            msg: `Incorrect Password`
         });
     }
     //Generamos token

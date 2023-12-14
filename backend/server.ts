@@ -1,11 +1,11 @@
 import express  from "express"
-import routesBooks from '../routes/book'
-import routesUsers from '../routes/user'
-import routesCategories from '../routes/category'
-import { Book } from "./book";
-import { User } from "./user";
+import routesBooks from './src/routes/book'
+import routesUsers from './src/routes/user'
+import routesCategories from './src/routes/category'
+import { Book } from "./src/models/book";
+import { User } from "./src/models/user";
 import cors from "cors";
-import { Category } from "./category";
+import { Category } from "./src/models/category";
 
 export class Server {
   private app: express.Application;

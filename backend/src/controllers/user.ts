@@ -19,7 +19,7 @@ export const newUser = async (req: Request, res: Response) => {
 
   if(user) {
     res.status(400).json({
-      msg: `Ya existe un usuario con el nombre ${username} o email ${email}` 
+      msg: `The username ${username} or email ${email} is already in use` 
     })
   }
 
@@ -33,12 +33,12 @@ export const newUser = async (req: Request, res: Response) => {
       role: role
     })
   
-    res.json({
-      msg: `Usuario ${username} creado exitosamente`,
+    res.status(201).json({
+      msg: `User: ${username} created successfully`,
     })
   } catch (error) {
-    res.status(400).json({
-      msg: 'upss ocurrio un error', error
+    res.status(500).json({
+      msg: 'Oopss, there was an error', error
     })    
   }
 }
@@ -50,7 +50,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
   if(!user) {
     return res.status(400).json({
-      msg: `No existe un usuario con el nombre ${username} en la base de datos`
+      msg: `The username ${username} does not exists`
     })
   }
   
@@ -58,7 +58,7 @@ export const loginUser = async (req: Request, res: Response) => {
   const passwordValid = await bcrypt.compare(password, user.password);
   if(!passwordValid) {
     return res.status(400).json({
-      msg: `Password incorrecta`
+      msg: `Incorrect Password`
     })
   }
 
