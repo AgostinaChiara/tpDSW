@@ -28,7 +28,6 @@ export class AuthService {
 
   isAdminUser(): boolean {
     const decodedToken = this.decodeToken();
-    console.log(decodedToken)
     return decodedToken && decodedToken.role === 'admin';
   }
 
