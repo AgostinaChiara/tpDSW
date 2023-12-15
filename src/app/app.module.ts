@@ -31,6 +31,7 @@ import { CategoriesCrudComponent } from './pages/crud/categories-crud/categories
 import { CreateCategoryComponent } from './pages/crud/categories-crud/create-category/create-category.component';
 import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-category/update-category.component';
 import { BookFormComponent } from './components/book-form/book-form.component';
+import { FormComponent } from './pages/crud/form/form.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { BookFormComponent } from './components/book-form/book-form.component';
     CreateCategoryComponent,
     UpdateCategoryComponent,
     BookFormComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

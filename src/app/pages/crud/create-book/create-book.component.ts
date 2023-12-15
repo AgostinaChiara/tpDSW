@@ -13,39 +13,21 @@ import { CategoryService } from 'src/app/services/category.service';
 export class CreateBookComponent implements OnInit {
   categories: Category[] | any;
 
-  createForm: FormGroup | any;
-
-  constructor(private _bookService: BookService, private _catService: CategoryService, private fb: FormBuilder,
-              private router: Router) {
-    this.createForm = this.fb.group({
-      isbn: ['', Validators.required],
-      title: ['', Validators.required],
-      year: ['', Validators.required],
-      author: ['', Validators.required],
-      image: ['', Validators.required],
-      price: ['', Validators.required],
-      categoryId: ['', Validators.required],
-      publisher: ['', Validators.required],
-      cover: ['', Validators.required],
-      pages: ['', Validators.required],
-      language: ['', Validators.required],
-      description: ['', Validators.required],
-      stock: ['', Validators.required],
-    });
-  }
+  constructor(private bookService: BookService, private catService: CategoryService, private fb: FormBuilder,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.getCategories();
   }
 
   getCategories() {
-    this._catService.getCategory().subscribe((data) => {
+    this.catService.getCategory().subscribe((data) => {
       this.categories = data;
     })
   }
 
-  onCreateBook() {
-    this._bookService.createBook(this.createForm.value).subscribe(res => {
+  onCreateBook(formData: any) {
+    this.bookService.createBook(formData).subscribe(res => {
       this.router.navigate(['/', 'crud'])
     });
   }

@@ -14,84 +14,42 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./update-book.component.css']
 })
 export class UpdatePageComponent implements OnInit {
-  bookData: Book | any = {};
-  categoryData: Category | any;
   categories: Category[] | any;
   isbn: string = '';
+  bookData: any = {};
 
-  updateForm: FormGroup | any;
-
-  cat$: Observable<Category[]> | undefined;
-  selectedCatId: number = 0;
-
-  constructor(private route: ActivatedRoute, private _bookService: BookService, private _catService: CategoryService, 
-              private fb: FormBuilder, private router: Router) {
-    this.updateForm = this.fb.group({
-      isbn: ['', Validators.required],
-      title: ['', Validators.required],
-      year: ['', Validators.required],
-      author: ['', Validators.required],
-      image: ['', Validators.required],
-      price: ['', Validators.required],
-      categoryId: ['', Validators.required],
-      publisher: ['', Validators.required],
-      cover: ['', Validators.required],
-      pages: ['', Validators.required],
-      language: ['', Validators.required],
-      description: ['', Validators.required],
-      stock: ['', Validators.required],
-    })
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private _bookService: BookService,
+    private _catService: CategoryService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.isbn = this.route.snapshot.params['isbn'];
     this.getCategories();
-    this.getBook();
-    this.cat$ = this._catService.getCategory();
-  }
-
-  getBook() {
-    this._bookService
-      .getOne(this.isbn)
-      .pipe(
-        switchMap((bookData) => {
-          return forkJoin({
-            bookData: of(bookData),
-            categoryData: this._catService.getOne(bookData.categoryId)
-          });
-        })
-      )
-      .subscribe((data) => {
-        this.bookData = data.bookData;
-        this.categoryData = data.categoryData;
-        this.selectedCatId = data.categoryData.id;
-
-        this.updateForm.patchValue(this.bookData);
-      });
+    this.getBookData();
   }
 
   getCategories() {
     this._catService.getCategory().subscribe((data) => {
       this.categories = data;
-    })
+    });
   }
 
-  getCategory(id: number) {
-    this._catService.getOne(id).subscribe((data) => {
-      this.categoryData = data;
-    })
+  getBookData() {
+    this._bookService.getOne(this.isbn).subscribe((data) => {
+      this.bookData = data;
+    });
   }
 
-  onSubmit() {
-    if (this.updateForm.valid) {
-      this._bookService.updateBook(this.isbn, this.updateForm.value).subscribe({
-        next: (data) => {
-          this.router.navigate(['/', 'crud'])
-        },
-        error: (error) => {
-          console.error("Something went wrong", error)
-        }
-      });
+  onUpdateBook(formData: any) {
+    if (this.bookData.categoryId) {
+      formData.categoryId = this.bookData.categoryId;
     }
+
+    this._bookService.updateBook(this.isbn, formData).subscribe(() => {
+      this.router.navigate(['/', 'crud']);
+    });
   }
 }
