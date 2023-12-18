@@ -45,11 +45,11 @@
       <p style="text-align: justify;">{{bookData.description}}</p>
 
     </div>
-    <div class="col-3 p-3">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-3">
       <p>Nuevo</p>
       <h3 class="fw-bold">{{bookData.title}}</h3>
       <h3>{{ bookData.price | currency }}</h3>
-      <h4>en 12x $155</h4>
+      <h4>en 12 x {{ (bookData.price / 12) | currency}}</h4>
       <a href="">Ver medios de pago</a>
       <p class="fw-bold">Stock disponible</p>
       <p>Cantidad:</p>

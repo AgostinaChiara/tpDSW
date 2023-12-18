@@ -30,7 +30,6 @@ import { AddTokenInterceptor } from './utils/add-token.interceptor';
 import { CategoriesCrudComponent } from './pages/crud/categories-crud/categories-crud.component';
 import { CreateCategoryComponent } from './pages/crud/categories-crud/create-category/create-category.component';
 import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-category/update-category.component';
-import { BookFormComponent } from './components/book-form/book-form.component';
 import { FormComponent } from './pages/crud/form/form.component';
 
 
@@ -54,7 +53,6 @@ import { FormComponent } from './pages/crud/form/form.component';
     CategoriesCrudComponent,
     CreateCategoryComponent,
     UpdateCategoryComponent,
-    BookFormComponent,
     FormComponent,
   ],
   imports: [

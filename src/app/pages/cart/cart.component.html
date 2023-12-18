@@ -1,29 +1,29 @@
-<div class="main-container">
-  <div class="cart-container">
-    <ul class="tab-container">
-      <li class="tab-li">
-        <span class="title-blue">Tu carrito ({{dataSource.length}})</span>
+<div class="container-fluid main-container">
+  <div class="container cart-container">
+    <ul class="nav nav-tabs tab-container">
+      <li class="nav-item tab-li">
+        <span class="title-blue nav-link">Tu carrito ({{dataSource.length}})</span>
       </li>
     </ul>
     <div class="separator"></div>
-    <div *ngIf="!cart.items.length">
+    <div *ngIf="!cart.items.length" class="d-flex flex-column text-center m-5">
       <p>
         Your cart is empty.
-        <button routerLink="/home">Start shopping</button>
       </p>
+      <button class="btn btn-primary btn-lg button-cart mx-auto" routerLink="/home">Start shopping</button>
     </div>
     <div *ngFor="let item of dataSource">
-      <section class="item-row">
-        <article class="item-cart">
+      <section class="item-row d-flex flex-row flex-wrap position-relative justify-content-between pt-5">
+        <article class="item-cart d-flex">
           <div class="item-cart-asset">
             <img src={{item.product}} alt="">
           </div>
-          <div class="item-cart-info">
+          <div class="overflow-hidden">
             <div class="item-title">
               <span class="text-title fw-bold">{{item.name}}</span>
             </div>
             <div class="item-cart-actions">
-              <div class="actions-container">
+              <div class="d-flex flex-row pb-1">
                 <a (click)="onRemoveFromCart(item)"><span class="title-blue">Eliminar</span></a>
                 <a><span class="title-blue">Comprar ahora</span></a>
               </div>
@@ -31,14 +31,14 @@
           </div>
         </article>
 
-        <div class="quantity-selector">
-          <div class="quantity-selector-box">
-            <form class="quantity-selector-form">
+        <div class="quantity-selector d-flex flex-column align-self-center">
+          <div class="d-flex flex-row position-relative justify-content-center">
+            <form class="quantity-selector-form d-flex overflow-hidden align-items-center">
               <button class="quantity-selector-button"
                 (click)="onRemoveQuantity(item)" [disabled]="item.quantity <= 0">
-                <span class="quantity-span">-</span>
+                <span class="quantity-span d-flex align-items-center justify-content-center">-</span>
               </button>
-              <div class="form-control">
+              <div class="form-control d-block position-relative text-center overflow-auto border-0">
                   <span>{{item.quantity}}</span>
               </div>
               <button class="quantity-selector-button"
@@ -47,35 +47,29 @@
               </button>
             </form>
           </div>
-          <p class="quantity-selector-message">
+          <p class="quantity-selector-message d-flex flex-column align-items-center text-center">
             <span style="color: #999; font-size: 14px;">{{item.stock - item.quantity}} disponibles</span>
           </p>
         </div>
 
-        <div class="item-price-container">
-          <div class="item-price">
-            <span class="item-price-span">{{ item.quantity * item.price | currency }}</span>
-          </div>
+        <div class="d-flex g-1 align-self-center pb-5">
+          <span class="item-price-span">{{ item.quantity * item.price | currency }}</span>
         </div>
         
-        <div class="separator mb-3"></div>
+        <div class="separator"></div>
       </section>
     </div>
-    <div class="total-row justify-content-between">
-      <div class="text-div">
-        <h5 class="total-text fs-3">
-          <span class="mr-1">Total</span>
+    <div class="d-flex flex-row justify-content-between align-items-center pt-3" >
+      <div class="d-flex flex-row align-items-center">
+        <h5 class="fs-3 p-2">
+          <span class="total-text">Total</span>
         </h5>
-      </div>
-    
-      <div class="total-div mr-3">
-        <h6 class="total-text">
+        <h6 class="p-2">
           <span class="fs-3">{{getTotal(cart.items) | currency }}</span>
         </h6>
       </div>
-
-      <div class="buy-container mr-3 pr-3">
-        <button class="btn btn-primary fs-6">
+      <div class="p-2">
+        <button class="btn btn-primary fs-6 button-cart">
           Comprar
         </button>
       </div>
