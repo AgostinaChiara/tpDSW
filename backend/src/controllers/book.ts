@@ -7,49 +7,36 @@ interface BookOptions {
   where?: any; 
   limit?: number;
   order?: any[];
+  include?: any[];
 }
 
 export const getBooks = async (req: Request, res: Response) => {
-  // Obtenemos los parámetros de consulta de la solicitud
-  const { name, limit, orderBy } = req.query;
-  
-  // Crea un objeto de opciones para personalizar la búsqueda
-  const options: BookOptions = {};
+  const { name, limit } = req.query;
 
-  // Agrega una cláusula WHERE para buscar por nombre si se proporciona
-  if (name) {
-    options.where = {
-      title: {
-        [Op.like]: `%${name}%`, // Búsqueda parcial por nombre
-      },
-    };
-  }
-
-  // Agrega una cláusula de ordenamiento si se proporciona
-  if (orderBy) {
-    if (orderBy === 'lowerPrice') {
-      options.order = [['price', 'ASC']];
-    } else if (orderBy === 'higherPrice') {
-      options.order = [['price', 'DESC']];
-    } else if (orderBy === 'relevance') {
-      options.order = [['isbn', 'ASC']]
-    }
-  }
-
-  // Agrega una cláusula de límite si se proporciona
-  if (limit) {
-    options.limit = parseInt(limit as string);
-  }
-  
   try {
-    const listBooks = await Book.findAll({
-      ...options,
-      include: [{model: Category, as: 'category', attributes: ['name']}]
-    });
+    const options: any = {
+      include: [{ model: Category, as: 'category', attributes: ['name'] }],
+    };
+
+    if (name) {
+      options.where = {
+        title: {
+          [Op.like]: `%${name}%`,
+        },
+      };
+    }
+
+    if (limit) {
+      options.limit = parseInt(limit as string, 10);
+    }
+
+    const listBooks = await Book.findAll(options);
     res.json(listBooks);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Error en la consulta de libros' });
   }
+  
 }
 
 export const getById = async (req: Request, res: Response) => {

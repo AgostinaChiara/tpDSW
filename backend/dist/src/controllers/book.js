@@ -14,39 +14,26 @@ const book_1 = require("../models/book");
 const sequelize_1 = require("sequelize");
 const category_1 = require("../models/category");
 const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // Obtenemos los parámetros de consulta de la solicitud
-    const { name, limit, orderBy } = req.query;
-    // Crea un objeto de opciones para personalizar la búsqueda
-    const options = {};
-    // Agrega una cláusula WHERE para buscar por nombre si se proporciona
-    if (name) {
-        options.where = {
-            title: {
-                [sequelize_1.Op.like]: `%${name}%`, // Búsqueda parcial por nombre
-            },
-        };
-    }
-    // Agrega una cláusula de ordenamiento si se proporciona
-    if (orderBy) {
-        if (orderBy === 'lowerPrice') {
-            options.order = [['price', 'ASC']];
-        }
-        else if (orderBy === 'higherPrice') {
-            options.order = [['price', 'DESC']];
-        }
-        else if (orderBy === 'relevance') {
-            options.order = [['isbn', 'ASC']];
-        }
-    }
-    // Agrega una cláusula de límite si se proporciona
-    if (limit) {
-        options.limit = parseInt(limit);
-    }
+    const { name, limit } = req.query;
     try {
-        const listBooks = yield book_1.Book.findAll(Object.assign(Object.assign({}, options), { include: [{ model: category_1.Category, as: 'category', attributes: ['name'] }] }));
+        const options = {
+            include: [{ model: category_1.Category, as: 'category', attributes: ['name'] }],
+        };
+        if (name) {
+            options.where = {
+                title: {
+                    [sequelize_1.Op.like]: `%${name}%`,
+                },
+            };
+        }
+        if (limit) {
+            options.limit = parseInt(limit, 10);
+        }
+        const listBooks = yield book_1.Book.findAll(options);
         res.json(listBooks);
     }
     catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Error en la consulta de libros' });
     }
 });

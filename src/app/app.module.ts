@@ -31,6 +31,8 @@ import { CategoriesCrudComponent } from './pages/crud/categories-crud/categories
 import { CreateCategoryComponent } from './pages/crud/categories-crud/create-category/create-category.component';
 import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-category/update-category.component';
 import { FormComponent } from './pages/crud/form/form.component';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { FilterNamePipe } from './pipes/filter-name.pipe';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { FormComponent } from './pages/crud/form/form.component';
     CreateCategoryComponent,
     UpdateCategoryComponent,
     FormComponent,
+    OrderByPipe,
+    FilterNamePipe,
   ],
   imports: [
     BrowserModule,

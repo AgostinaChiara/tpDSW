@@ -48,7 +48,7 @@ export class BookListComponent implements OnInit {
         this.books = data;
       });
     }
-  }
+ }
 
   getCategory(id: number) {
     this.catService.getOne(id).subscribe((data) => {

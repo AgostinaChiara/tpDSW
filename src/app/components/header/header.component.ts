@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -15,8 +15,7 @@ export class HeaderComponent implements OnInit {
   inputText: string = '';
   categories: Category[] | any;
 
-  constructor(private _categoryService: CategoryService, private _userService: UserService,
-              private _authService: AuthService, private router: Router) { }
+  constructor(private _categoryService: CategoryService, private _authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCategories();
