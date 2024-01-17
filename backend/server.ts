@@ -6,6 +6,8 @@ import { Book } from "./src/models/book";
 import { User } from "./src/models/user";
 import cors from "cors";
 import { Category } from "./src/models/category";
+import { Order } from "./src/models/order";
+import { OrderItem } from "./src/models/orderItem";
 
 export class Server {
   private app: express.Application;
@@ -42,6 +44,8 @@ export class Server {
       await Book.sync()
       await User.sync()
       await Category.sync()
+      await Order.sync()
+      await OrderItem.sync()
       console.log('Connection has been established successfully');
     } catch(error) {
       console.error('Unable to connecto to the database: ', error)

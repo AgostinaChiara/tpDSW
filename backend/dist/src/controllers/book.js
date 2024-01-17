@@ -8,11 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteBook = exports.updateBook = exports.createBook = exports.getFeaturedBooks = exports.getByCategory = exports.getById = exports.getBooks = void 0;
 const book_1 = require("../models/book");
 const sequelize_1 = require("sequelize");
 const category_1 = require("../models/category");
+const cloudinary_1 = __importDefault(require("../utils/cloudinary"));
 const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, limit } = req.query;
     try {
@@ -67,14 +71,23 @@ const getFeaturedBooks = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.getFeaturedBooks = getFeaturedBooks;
 const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const { body } = req;
     try {
-        yield book_1.Book.create(body);
+        if (!req.file) {
+            return res.status(400).json({
+                msg: 'Missing file in the request',
+            });
+        }
+        const result = yield cloudinary_1.default.uploader.upload((_a = req.file) === null || _a === void 0 ? void 0 : _a.path);
+        const imageUrl = result.url;
+        yield book_1.Book.create(Object.assign(Object.assign({}, body), { image: imageUrl }));
         res.status(201).json({
             msg: `Book created successfully!`,
         });
     }
     catch (error) {
+        console.error("Error:", error);
         res.status(500).json({
             msg: `Oops, there was an error`,
         });

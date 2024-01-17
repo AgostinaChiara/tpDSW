@@ -3,12 +3,8 @@ import { Book } from '../models/book'
 import { Op } from 'sequelize';
 import { Category } from '../models/category';
 
-interface BookOptions {
-  where?: any; 
-  limit?: number;
-  order?: any[];
-  include?: any[];
-}
+import cloudinary from '../utils/cloudinary';
+import upload from '../utils/multer';
 
 export const getBooks = async (req: Request, res: Response) => {
   const { name, limit } = req.query;
@@ -70,12 +66,22 @@ export const createBook = async (req: Request, res: Response) => {
   const { body } = req;
 
   try {
-    await Book.create(body);
+    if (!req.file) {
+      return res.status(400).json({
+        msg: 'Missing file in the request',
+      });
+    }
+
+    const result = await cloudinary.uploader.upload(req.file?.path);
+    const imageUrl = result.url;
+    
+    await Book.create({ ...body, image: imageUrl })
 
     res.status(201).json({
       msg: `Book created successfully!`,
     });
   } catch (error) {
+    console.error("Error:",error);
     res.status(500).json({
       msg: `Oops, there was an error`,
     });
