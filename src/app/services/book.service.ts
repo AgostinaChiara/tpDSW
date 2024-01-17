@@ -62,7 +62,7 @@ export class BookService {
     })
   }
 
-  createBook(book: any): Observable<Book> {
-    return this.http.post<Book>(`${this.myAppUrl}${this.myApiUrl}`, book);
+  createBook(formData: FormData): Observable<Book> {
+    return this.http.post<Book>(`${this.myAppUrl}${this.myApiUrl}`, formData);
   }
 }

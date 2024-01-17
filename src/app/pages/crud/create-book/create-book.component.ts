@@ -26,7 +26,7 @@ export class CreateBookComponent implements OnInit {
     })
   }
 
-  onCreateBook(formData: any) {
+  onCreateBook(formData: FormData) {
     this.bookService.createBook(formData).subscribe(res => {
       this.router.navigate(['/', 'crud'])
     });

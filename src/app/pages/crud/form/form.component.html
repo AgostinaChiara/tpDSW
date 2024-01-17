@@ -1,4 +1,4 @@
-<form class="row g-3" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+<form class="row g-3" [formGroup]="bookForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
   <div class="col-md-3 mb-3">
     <label for="book-isbn" class="col-form-label fw-bold">ISBN</label>
     <input type="text" class="form-control" formControlName="isbn" id="book-isbn">
@@ -9,7 +9,8 @@
   </div>
   <div class="col-md-12 mb-3">
     <label for="book-image" class="col-form-label fw-bold">Image</label>
-    <input type="text" class="form-control" formControlName="image" id="book-image" placeholder="http://image.jpg">
+    <input type="file" (change)="onFileSelected($event)" class="form-control" id="book-image">
+    <img *ngIf="bookForm.value.image" [src]="bookForm.value.image" alt="Selected Image" class="img-fluid mt-2">
   </div>
   <div class="col-md-4 mb-3">
     <label for="book-price" class="col-form-label fw-bold">Price</label>

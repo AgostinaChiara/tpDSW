@@ -45,12 +45,42 @@ export class FormComponent implements OnInit, OnChanges {
       language: ['', Validators.required],
       description: ['', Validators.required],
       stock: ['', Validators.required],
+      file: [null, Validators.required]
     });
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      // Set the image URL directly, assuming the file is an image
+      this.bookForm.patchValue({
+        image: URL.createObjectURL(file),
+        file: file,
+      });
+    }
   }
 
   onSubmit() {
     if (this.bookForm.valid) {
-      this.formSubmit.emit(this.bookForm.value);
-    }
+      const formData = new FormData();
+      formData.append('isbn', this.bookForm.get('isbn').value);
+      formData.append('title', this.bookForm.get('title').value);
+      formData.append('year', this.bookForm.get('year').value);
+      formData.append('author', this.bookForm.get('author').value);
+      const fileControl = this.bookForm.get('file');
+      if (fileControl) {
+        formData.append('file', fileControl.value);
+      }
+      formData.append('price', this.bookForm.get('price').value);
+      formData.append('categoryId', this.bookForm.get('categoryId').value);
+      formData.append('publisher', this.bookForm.get('publisher').value);
+      formData.append('cover', this.bookForm.get('cover').value);
+      formData.append('pages', this.bookForm.get('pages').value);
+      formData.append('language', this.bookForm.get('language').value);
+      formData.append('description', this.bookForm.get('description').value);
+      formData.append('stock', this.bookForm.get('stock').value);
+
+      this.formSubmit.emit(formData);
+    } 
   }
 }
