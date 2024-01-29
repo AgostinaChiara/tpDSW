@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent {
   registerForm: FormGroup | any;
   loading: boolean = false;
+  hidePassword: boolean = true;
 
   constructor(private route: ActivatedRoute, private _userService: UserService,  
               private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
@@ -21,6 +22,10 @@ export class RegisterComponent {
       email: ['', Validators.required],
       password: ['', Validators.required]
     })
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 
   onSubmit() {
@@ -36,7 +41,6 @@ export class RegisterComponent {
           this.router.navigate(['/', 'login'])
         },
           error: (error) => {
-            console.error("Something went wrong", error)
             this.toastr.error('Todos los campos son obligatorios', 'Error')
           }
       })        

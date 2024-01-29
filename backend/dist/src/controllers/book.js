@@ -76,20 +76,26 @@ const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         if (!req.file) {
             return res.status(400).json({
-                msg: 'Missing file in the request',
+                msg: 'Falta cargar el archivo.',
+            });
+        }
+        const existingBook = yield book_1.Book.findByPk(body.isbn);
+        if (existingBook) {
+            return res.status(400).json({
+                msg: "El ISBN ya esta en uso."
             });
         }
         const result = yield cloudinary_1.default.uploader.upload((_a = req.file) === null || _a === void 0 ? void 0 : _a.path);
         const imageUrl = result.url;
         yield book_1.Book.create(Object.assign(Object.assign({}, body), { image: imageUrl }));
         res.status(201).json({
-            msg: `Book created successfully!`,
+            msg: `Libro creado exitosamente!`,
         });
     }
     catch (error) {
         console.error("Error:", error);
         res.status(500).json({
-            msg: `Oops, there was an error`,
+            msg: `Oops, hubo un error`,
         });
     }
 });

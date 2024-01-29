@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Cart, CartItem } from '../models/cart.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Cart, CartItem } from '../models/cart.model';
 export class CartService {
   cart = new BehaviorSubject<Cart>({ items: []});
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
   
   addToCart(item: CartItem) {
   const items = [...this.cart.value.items];
@@ -22,6 +23,7 @@ export class CartService {
   }
 
   this.cart.next({ items });
+  this.toastr.success("Agregado carrito correctamente!", "Exito")
   }
 
   removeQuantity(item: CartItem): void {
@@ -42,7 +44,7 @@ export class CartService {
     }
 
     this.cart.next({items: filteredItems});
-    // this._snackBar.open('1 item removed from cart.', 'Ok', {duration: 3000});
+    this.toastr.success("Eliminado del carrito correctamente!", "Exito")
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -53,7 +55,7 @@ export class CartService {
 
   clearCart(): void {
     this.cart.next({ items: [] });
-    // this._snackBar.open('Cart is cleared.', 'Ok', {duration: 3000});
+    this.toastr.success("Carrito vacio!", "Exito")
   }
 
   removeFromCart(item: CartItem, update = true): Array<CartItem> {
@@ -63,7 +65,7 @@ export class CartService {
 
     if(update) {
       this.cart.next({ items: filteredItems});
-      // this._snackBar.open('1 item removed from cart.', 'Ok', {duration: 3000});
+      this.toastr.success("Eliminado del carrito correctamente!", "Exito")
     }
 
     return filteredItems;

@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category.model';
-import { BookService } from 'src/app/services/book.service';
-import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-form',
@@ -17,8 +15,9 @@ export class FormComponent implements OnInit, OnChanges {
   @Output() formSubmit = new EventEmitter<any>();
 
   bookForm: FormGroup | any;
+  submitted = false;
 
-  constructor(private fb: FormBuilder, private bookService: BookService, private catService: CategoryService) { }
+  constructor(private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -31,6 +30,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
    initializeForm() {
+    this.submitted = false;
     this.bookForm = this.fb.group({
       isbn: ['', Validators.required],
       title: ['', Validators.required],
@@ -41,9 +41,9 @@ export class FormComponent implements OnInit, OnChanges {
       categoryId: ['', Validators.required],
       publisher: ['', Validators.required],
       cover: ['', Validators.required],
-      pages: ['', Validators.required],
-      language: ['', Validators.required],
-      description: ['', Validators.required],
+      pages: [''],
+      language: [''],
+      description: [''],
       stock: ['', Validators.required],
       file: [null, Validators.required]
     });
@@ -61,6 +61,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.bookForm.valid) {
       const formData = new FormData();
       formData.append('isbn', this.bookForm.get('isbn').value);
@@ -81,6 +82,8 @@ export class FormComponent implements OnInit, OnChanges {
       formData.append('stock', this.bookForm.get('stock').value);
 
       this.formSubmit.emit(formData);
-    } 
-  }
+    } else {
+      this.toastr.error('Por favor, complete todos los campos requeridos.', 'Error')
+    }
+  } 
 }

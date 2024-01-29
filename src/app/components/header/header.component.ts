@@ -1,9 +1,9 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   inputText: string = '';
   categories: Category[] | any;
 
-  constructor(private _categoryService: CategoryService, private _authService: AuthService, private router: Router) { }
+  constructor(private _categoryService: CategoryService, private _authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
+    this.toastr.success('Cerro sesion correctamente!')
     this._authService.clearToken();
     this.router.navigate(['/']);
     location.reload();

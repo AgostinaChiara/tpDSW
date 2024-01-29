@@ -2,22 +2,37 @@
   <div class="row align-items-stretch">
     <div class="col bg-white p-5 rounded-end">
       <div class="text-end">
-        <img src="" alt="">
       </div>
-      <h2 class="fw-bold text-center py-5">Welcome</h2>.
+      <h2 class="fw-bold text-center py-5">Bienvenido!</h2>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- User  -->
         <div class="mb-4">
-          <label for="text" class="form-label">Username</label>
-          <input type="text" class="form-control" formControlName="username">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="username"
+            [class.is-invalid]="loginForm.get('username').invalid && loginForm.get('username').touched">
+          <div class="invalid-feedback">
+            <div *ngIf="loginForm.get('username').hasError('required')">Username es requerido.</div>
+          </div>
         </div>
+
+        <!-- Password  -->
         <div class="mb-4">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" formControlName="password">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" formControlName="password"
+              [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').touched">
+            <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+              <i class="{{ hidePassword ? 'bi bi-eye' : 'bi bi-eye-slash' }}"></i>
+            </button>
+          </div>
+          <div class="invalid-feedback">
+            <div *ngIf="loginForm.get('password').hasError('required')">Contraseña es requerida.</div>
+          </div>
         </div>
         
         <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Log In</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log In</button>
         </div>
 
         <div class="my-3">
@@ -26,9 +41,6 @@
         </div>
       </form>
 
-      <div class="container w-100 my-5">
-        <div class="col-12">Log In</div>
-      </div>
       <div class="row">
         <div class="col">
           <button class="btn btn-outline-primary w-100 my-1">

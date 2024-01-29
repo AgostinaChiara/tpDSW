@@ -70,7 +70,7 @@ import { FilterNamePipe } from './pipes/filter-name.pipe';
     ModalModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 4000,
-      positionClass: 'toast-botton-right',
+      positionClass: 'toast-bottom-right',
     }),
     NgSelectModule
   ],

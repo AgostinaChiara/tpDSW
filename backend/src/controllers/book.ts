@@ -68,8 +68,15 @@ export const createBook = async (req: Request, res: Response) => {
   try {
     if (!req.file) {
       return res.status(400).json({
-        msg: 'Missing file in the request',
+        msg: 'Falta cargar el archivo.',
       });
+    }
+
+    const existingBook = await Book.findByPk(body.isbn)
+    if(existingBook) {
+      return res.status(400).json({
+        msg: "El ISBN ya esta en uso."
+      })
     }
 
     const result = await cloudinary.uploader.upload(req.file?.path);
@@ -78,12 +85,12 @@ export const createBook = async (req: Request, res: Response) => {
     await Book.create({ ...body, image: imageUrl })
 
     res.status(201).json({
-      msg: `Book created successfully!`,
+      msg: `Libro creado exitosamente!`,
     });
   } catch (error) {
     console.error("Error:",error);
     res.status(500).json({
-      msg: `Oops, there was an error`,
+      msg: `Oops, hubo un error`,
     });
   }
 }

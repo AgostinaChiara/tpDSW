@@ -4,24 +4,47 @@
       <div class="text-end">
         <img src="" alt="">
       </div>
-      <h2 class="fw-bold text-center py-5">Create your account!</h2>.
+      <h2 class="fw-bold text-center py-5">Crea una nueva cuenta!</h2>.
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- User  -->
         <div class="mb-4">
-          <label for="text" class="form-label">Username</label>
-          <input type="text" class="form-control" formControlName="username">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="username"
+            [class.is-invalid]="registerForm.get('username').invalid && registerForm.get('username').touched">
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('username').hasError('required')">Username es requerido.</div>
+          </div>
         </div>
+
+        <!-- Email  -->
         <div class="mb-4">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" formControlName="email">
+          <input type="email" class="form-control" formControlName="email"
+            [class.is-invalid]="registerForm.get('email').invalid && registerForm.get('email').touched">
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('email').hasError('required')">Email es requerido.</div>
+            <div *ngIf="registerForm.get('email').hasError('email')">Ingrese un email válido.</div>
+          </div>
         </div>
+
+        <!-- Password  -->
         <div class="mb-4">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" formControlName="password">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" formControlName="password"
+              [class.is-invalid]="registerForm.get('password').invalid && registerForm.get('password').touched">
+            <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+              <i class="{{ hidePassword ? 'bi bi-eye' : 'bi bi-eye-slash' }}"></i>
+            </button>
+          </div>
+          <div class="invalid-feedback">
+            <div *ngIf="registerForm.get('password').hasError('required')">Contraseña es requerida.</div>
+          </div>
         </div>
 
         <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Registrar</button>
         </div>
 
         <div class="my-3">

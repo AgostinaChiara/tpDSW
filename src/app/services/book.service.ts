@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, take } from 'rxjs';
+import { Observable, catchError, map, take, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book, BookWithCategoryName } from '../models/book.model';
 
@@ -63,6 +63,6 @@ export class BookService {
   }
 
   createBook(formData: FormData): Observable<Book> {
-    return this.http.post<Book>(`${this.myAppUrl}${this.myApiUrl}`, formData);
+    return this.http.post<Book>(`${this.myAppUrl}${this.myApiUrl}`, formData)
   }
 }
