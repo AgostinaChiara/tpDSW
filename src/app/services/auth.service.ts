@@ -43,4 +43,14 @@ export class AuthService {
     }
     return null;
   }
+
+  getUserId(): number {
+    const decodedToken = this.decodeToken()
+    return decodedToken.id
+  }
+
+  getUserEmail(): string {
+    const decodedToken = this.decodeToken()
+    return decodedToken.email
+  }
 }

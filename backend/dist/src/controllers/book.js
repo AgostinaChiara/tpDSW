@@ -106,21 +106,24 @@ const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const book = yield book_1.Book.findByPk(id);
         if (book) {
-            yield book.update(body);
+            if (body.file === null || body.file === undefined) {
+                delete body.file;
+            }
+            yield book.update(Object.assign({}, body));
             res.status(200).json({
-                msg: 'The book was updated successfully',
+                msg: 'El libro se actualizo correctamente!',
             });
         }
         else {
             res.status(404).json({
-                msg: `Book with ISBN ${id} not found`
+                msg: `El libro con ISBN ${id} no se encontro.`
             });
         }
     }
     catch (error) {
         console.log(error);
         res.status(404).json({
-            msg: `Book with ISBN ${id} not found`,
+            msg: `El libro con ISBN ${id} no se encontro.`,
         });
     }
 });
@@ -130,13 +133,14 @@ const deleteBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const book = yield book_1.Book.findByPk(id);
     if (!book) {
         res.status(404).json({
-            msg: `Book with ISBN ${id} not found`
+            msg: `El libro con ISBN ${id} no se encontro.`
         });
     }
     else {
+        yield cloudinary_1.default.uploader.destroy(book.image.split('/').pop().split('.')[0]);
         yield book.destroy();
         res.status(200).json({
-            msg: 'Book deleted successfully!!'
+            msg: 'Libro eliminado correctamente!!'
         });
     }
 });

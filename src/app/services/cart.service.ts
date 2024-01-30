@@ -22,6 +22,8 @@ export class CartService {
     items.push(item);
   }
 
+  console.log("items; ", items)
+
   this.cart.next({ items });
   this.toastr.success("Agregado carrito correctamente!", "Exito")
   }

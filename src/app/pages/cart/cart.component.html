@@ -55,7 +55,6 @@
         <div class="d-flex g-1 align-self-center pb-5">
           <span class="item-price-span">{{ item.quantity * item.price | currency }}</span>
         </div>
-        
         <div class="separator"></div>
       </section>
     </div>
@@ -69,10 +68,11 @@
         </h6>
       </div>
       <div class="p-2">
-        <button class="btn btn-primary fs-6 button-cart">
+        <button type="button" class="btn btn-primary fs-6 button-cart" (click)="onBuy()">
           Comprar
         </button>
       </div>
     </div>
   </div>
+  <div class="separator"></div>
 </div>

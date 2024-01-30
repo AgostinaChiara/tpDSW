@@ -10,7 +10,7 @@ router.get('/categories/:cat', getByCategory);
 
 router.post('/', upload.single("file"), createBook);
 
-router.patch('/:id', updateBook);
+router.patch('/:id', upload.single("file"), updateBook);
 
 router.delete('/:id', deleteBook);
 

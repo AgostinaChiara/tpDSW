@@ -45,14 +45,13 @@ export class FormComponent implements OnInit, OnChanges {
       language: [''],
       description: [''],
       stock: ['', Validators.required],
-      file: [null, Validators.required]
+      file: [null]
     });
   }
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Set the image URL directly, assuming the file is an image
       this.bookForm.patchValue({
         image: URL.createObjectURL(file),
         file: file,

@@ -26,9 +26,9 @@
   <div class="col-md-12 mb-3">
     <label for="book-image" class="col-form-label fw-bold">Imagen (*)</label>
     <input type="file" (change)="onFileSelected($event)" class="form-control" id="book-image"
-    [class.is-invalid]="(bookForm.get('file').invalid && (bookForm.get('file').touched || submitted)) || (bookForm.invalid && submitted)">
+    [class.is-invalid]="(bookForm.get('image').invalid && (bookForm.get('image').touched || submitted)) || (bookForm.invalid && submitted)">
     <div class="invalid-feedback">
-      <div *ngIf="bookForm.get('file').hasError('required') && (bookForm.get('file').touched || submitted)">
+      <div *ngIf="bookForm.get('image').hasError('required') && (bookForm.get('image').touched || submitted)">
         Imagen es requerida.
       </div>
     </div>

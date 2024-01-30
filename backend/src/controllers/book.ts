@@ -103,35 +103,42 @@ export const updateBook = async (req: Request, res: Response) => {
     const book = await Book.findByPk(id);
 
     if(book) {
-      await book.update(body);
+
+      if (body.file === null || body.file === undefined) {
+        delete body.file;
+      }
+
+      await book.update({ ...body });
+
       res.status(200).json({
-        msg: 'The book was updated successfully',
+        msg: 'El libro se actualizo correctamente!',
       });
     } else {
       res.status(404).json({
-          msg: `Book with ISBN ${id} not found`
+          msg: `El libro con ISBN ${id} no se encontro.`
       })
     }
   } catch (error) {
     console.log(error);
     res.status(404).json({
-        msg: `Book with ISBN ${id} not found`,
+        msg: `El libro con ISBN ${id} no se encontro.`,
       });
   }
 }
 
 export const deleteBook = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const book = await Book.findByPk(id);
+  const book: any = await Book.findByPk(id);
 
   if (!book) {
       res.status(404).json({
-          msg: `Book with ISBN ${id} not found`
+          msg: `El libro con ISBN ${id} no se encontro.`
       })
   } else {
+      await cloudinary.uploader.destroy(book.image.split('/').pop().split('.')[0]);
       await book.destroy();
       res.status(200).json({
-          msg: 'Book deleted successfully!!'
+          msg: 'Libro eliminado correctamente!!'
       })
   }
 }

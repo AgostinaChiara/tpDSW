@@ -11,6 +11,6 @@ router.get('/', book_1.getBooks);
 router.get('/:id', book_1.getById);
 router.get('/categories/:cat', book_1.getByCategory);
 router.post('/', multer_1.default.single("file"), book_1.createBook);
-router.patch('/:id', book_1.updateBook);
+router.patch('/:id', multer_1.default.single("file"), book_1.updateBook);
 router.delete('/:id', book_1.deleteBook);
 exports.default = router;

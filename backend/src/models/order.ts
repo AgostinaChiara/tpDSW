@@ -13,10 +13,6 @@ export const Order = sequelize.define('order', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   email: {
     type: DataTypes.STRING,
     allowNull: false
