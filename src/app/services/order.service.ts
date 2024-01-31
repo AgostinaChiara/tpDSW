@@ -19,4 +19,12 @@ export class OrderService {
   createOrder(order: any): Observable<Order> {
     return this.http.post<Order>(`${this.myAppUrl}${this.myApiUrl}`, order)
   }
+
+  getAllOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.myAppUrl}${this.myApiUrl}`)
+  }
+
+  gettAllUserOrders(userId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.myAppUrl}${this.myApiUrl}${userId}`)
+  }
 }

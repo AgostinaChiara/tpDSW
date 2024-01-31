@@ -13,6 +13,7 @@ import { CategoriesCrudComponent } from './pages/crud/categories-crud/categories
 import { CreateCategoryComponent } from './pages/crud/categories-crud/create-category/create-category.component';
 import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-category/update-category.component';
 import { AuthGuard } from './utils/auth.guard';
+import { OrderChartsComponent } from './pages/order-charts/order-charts.component';
 
 const routes: Routes = [{
   path: 'home',
@@ -71,6 +72,10 @@ const routes: Routes = [{
   path: 'updateCategory/:id',
   component: UpdateCategoryComponent,
   canActivate: [AuthGuard]
+},
+{
+  path: 'charts',
+  component: OrderChartsComponent
 },
 {
   path: '', redirectTo: 'home', pathMatch: 'full'

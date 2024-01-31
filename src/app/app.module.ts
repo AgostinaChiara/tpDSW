@@ -33,6 +33,9 @@ import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-cat
 import { FormComponent } from './pages/crud/form/form.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { FilterNamePipe } from './pipes/filter-name.pipe';
+import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
+import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { OrderChartsComponent } from './pages/order-charts/order-charts.component';
 
 
 @NgModule({
@@ -58,6 +61,8 @@ import { FilterNamePipe } from './pipes/filter-name.pipe';
     FormComponent,
     OrderByPipe,
     FilterNamePipe,
+    DoughnutChartComponent,
+    OrderChartsComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,10 +77,12 @@ import { FilterNamePipe } from './pipes/filter-name.pipe';
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
     }),
-    NgSelectModule
+    NgSelectModule,
+    NgChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
+    { provide: NgChartsConfiguration, useValue: { generateColors: false }},
     CartService, 
     BookService, 
     BsModalService],
