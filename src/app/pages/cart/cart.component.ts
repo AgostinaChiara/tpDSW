@@ -44,22 +44,26 @@ export class CartComponent implements OnInit {
   }
 
   onBuy() {
-    const orderData = {
-      userId: this.authService.getUserId(),
-      email: this.authService.getUserEmail(),
-      total: this.getTotal(this.cart.items),
-      items: this.cart.items
+    if(this.authService.isAuthenticatedUser()) {
+      const orderData = {
+        userId: this.authService.getUserId(),
+        email: this.authService.getUserEmail(),
+        total: this.getTotal(this.cart.items),
+        items: this.cart.items
+      }
+      this.orderService.createOrder(orderData).subscribe({
+          next: (data: any) => {
+            this.cartService.clearCart();
+            this.toastr.success("Compra Exitosa!", "Exito!")
+            this.router.navigate(['/order'], { queryParams: { id: data.order.id } })
+          },
+            error: (error) => {
+              this.toastr.error(error, "Error")
+            }
+        });
+    } else {
+      this.toastr.error("Por favor, inicie sesion para continuar la compra.", "Error")
     }
-    this.orderService.createOrder(orderData).subscribe({
-        next: (data) => {
-          this.cartService.clearCart();
-          this.toastr.success("Compra Exitosa!", "Exito!")
-          this.router.navigate(['/home'])
-        },
-          error: (error) => {
-            this.toastr.error(error, "Error")
-          }
-      });
   }
 
 }

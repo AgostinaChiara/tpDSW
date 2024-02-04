@@ -14,6 +14,7 @@ import { CreateCategoryComponent } from './pages/crud/categories-crud/create-cat
 import { UpdateCategoryComponent } from './pages/crud/categories-crud/update-category/update-category.component';
 import { AuthGuard } from './utils/auth.guard';
 import { OrderChartsComponent } from './pages/order-charts/order-charts.component';
+import { FinishOrderComponent } from './pages/finish-order/finish-order.component';
 
 const routes: Routes = [{
   path: 'home',
@@ -76,6 +77,10 @@ const routes: Routes = [{
 {
   path: 'charts',
   component: OrderChartsComponent
+},
+{
+  path: 'order',
+  component: FinishOrderComponent
 },
 {
   path: '', redirectTo: 'home', pathMatch: 'full'

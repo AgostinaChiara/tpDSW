@@ -27,9 +27,14 @@ export class CreateBookComponent implements OnInit {
   }
 
   onCreateBook(formData: FormData) {
-    this.bookService.createBook(formData).subscribe(res => {
-      this.toastr.success("El libro se creo correctamente!", 'Éxito');
-      this.router.navigate(['/', 'crud'])
+    this.bookService.createBook(formData).subscribe({
+      next: (data) => {
+        this.toastr.success("El libro se creo correctamente!", 'Éxito');
+        this.router.navigate(['/', 'crud'])
+      },
+      error: (error) => {
+        this.toastr.error("El ISBN ya se encuentra en uso", "Error")
+      }
     });
   }
 }

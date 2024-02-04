@@ -1,3 +1,5 @@
+import { Book } from "./book.model"
+
 export interface Order {
   id: number,
   userId: number,
@@ -8,4 +10,8 @@ export interface Order {
 
 export interface OrderItem {
   quantity: number
+}
+
+export interface CompleteOrder extends Order {
+  books: Book[]
 }

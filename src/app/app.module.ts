@@ -36,6 +36,7 @@ import { FilterNamePipe } from './pipes/filter-name.pipe';
 import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 import { OrderChartsComponent } from './pages/order-charts/order-charts.component';
+import { FinishOrderComponent } from './pages/finish-order/finish-order.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { OrderChartsComponent } from './pages/order-charts/order-charts.componen
     FilterNamePipe,
     DoughnutChartComponent,
     OrderChartsComponent,
+    FinishOrderComponent,
   ],
   imports: [
     BrowserModule,

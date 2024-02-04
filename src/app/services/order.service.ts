@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { Order } from '../models/order.model';
+import { CompleteOrder, Order } from '../models/order.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,6 +25,10 @@ export class OrderService {
   }
 
   gettAllUserOrders(userId: number): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.myAppUrl}${this.myApiUrl}${userId}`)
+    return this.http.get<Order[]>(`${this.myAppUrl}${this.myApiUrl}user/${userId}`)
+  }
+
+  getOrderById(id: number): Observable<CompleteOrder> {
+    return this.http.get<CompleteOrder>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 }

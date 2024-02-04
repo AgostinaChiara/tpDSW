@@ -81,3 +81,17 @@ export const getUserOrders = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error interno del servidor. "})
   }
 }
+
+export const getOrderById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const order = await Order.findByPk(id, {
+    include: {
+      model: Book
+    } 
+  });
+  if(order) {
+    return res.json(order)
+  } else {
+    res.status(404).json({ message: "La orden no existe."})
+  }
+}

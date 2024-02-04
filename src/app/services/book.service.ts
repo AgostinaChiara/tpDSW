@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, take, throwError } from 'rxjs';
+import { Observable, map, take, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { Book, BookWithCategoryName } from '../models/book.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class BookService {
   private myAppUrl: string;
   private myApiUrl: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private toastr: ToastrService) { 
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/books/'
   }
@@ -64,5 +66,14 @@ export class BookService {
 
   createBook(formData: FormData): Observable<Book> {
     return this.http.post<Book>(`${this.myAppUrl}${this.myApiUrl}`, formData)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if(error.status === 400) {
+            console.log("El ISBN ingresado se encuentra en uso.", "Error")
+          }
+
+          return throwError("")
+        })
+      )
   }
 }
