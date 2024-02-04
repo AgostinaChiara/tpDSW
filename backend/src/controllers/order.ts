@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Order, OrderItem } from '../models/order';
+import { Order } from '../models/order';
 import { Book } from '../models/book';
 import { User } from '../models/user';
 import sequelize from '../db/connection';
@@ -81,6 +81,22 @@ export const getUserOrders = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error interno del servidor. "})
   }
 }
+
+export const getOrdersByMonth = async (req: Request, res: Response) => {
+  try {
+    const ordersByMonth = await Order.findAll({
+      attributes: [
+        [sequelize.fn('MONTH', sequelize.col('createdAt')), 'month'],
+        [sequelize.fn('COUNT', sequelize.col('id')), 'orderCount']
+      ],
+      group: [sequelize.fn('MONTH', sequelize.col('createdAt'))]
+    });
+    res.json(ordersByMonth);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error interno del servidor.' });
+  }
+};
 
 export const getOrderById = async (req: Request, res: Response) => {
   const { id } = req.params;

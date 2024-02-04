@@ -37,6 +37,7 @@ import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
 import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 import { OrderChartsComponent } from './pages/order-charts/order-charts.component';
 import { FinishOrderComponent } from './pages/finish-order/finish-order.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { FinishOrderComponent } from './pages/finish-order/finish-order.componen
     DoughnutChartComponent,
     OrderChartsComponent,
     FinishOrderComponent,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,

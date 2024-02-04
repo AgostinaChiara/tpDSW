@@ -15,3 +15,8 @@ export interface OrderItem {
 export interface CompleteOrder extends Order {
   books: Book[]
 }
+
+export interface OrdersByMonth {
+  month: number;
+  orderCount: number;
+}

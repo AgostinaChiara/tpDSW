@@ -25,6 +25,9 @@
         <li class="nav-item" *ngIf="isAdmin()">
           <a class="nav-link active" aria-current="page" routerLink="crud">Dashboard</a>
         </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link active" aria-current="page" routerLink="charts">Informes</a>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" [(ngModel)]="inputText" (input)="onSearchTextChanged()" placeholder="Buscar" aria-label="Search" name="searchText">

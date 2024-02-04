@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { CompleteOrder, Order } from '../models/order.model';
+import { CompleteOrder, Order, OrdersByMonth } from '../models/order.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -30,5 +30,9 @@ export class OrderService {
 
   getOrderById(id: number): Observable<CompleteOrder> {
     return this.http.get<CompleteOrder>(`${this.myAppUrl}${this.myApiUrl}${id}`)
+  }
+
+  getOrderByMonth(): Observable<OrdersByMonth> {
+    return this.http.get<OrdersByMonth>(`${this.myAppUrl}${this.myApiUrl}/by-month`)
   }
 }

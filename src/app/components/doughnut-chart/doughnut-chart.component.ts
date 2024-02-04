@@ -20,7 +20,6 @@ export class DoughnutChartComponent implements OnInit {
 
   ngOnInit() {
     this.orderService.getAllOrders().subscribe(data => {
-      console.log("orderService corriendo")
         const categoryCounts = this.calculateCategoryCounts(data);
         this.doughnutChartLabels = Object.keys(categoryCounts);
         this.doughnutChartData = {
