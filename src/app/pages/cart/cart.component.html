@@ -8,9 +8,9 @@
     <div class="separator"></div>
     <div *ngIf="!cart.items.length" class="d-flex flex-column text-center m-5">
       <p>
-        Your cart is empty.
+        Tu carrito esta vacío.
       </p>
-      <button class="btn btn-primary btn-lg button-cart mx-auto" routerLink="/home">Start shopping</button>
+      <button class="btn btn-primary btn-lg button-cart mx-auto" routerLink="/home">Empezar a comprar</button>
     </div>
     <div *ngFor="let item of dataSource">
       <section class="item-row d-flex flex-row flex-wrap position-relative justify-content-between pt-5">
