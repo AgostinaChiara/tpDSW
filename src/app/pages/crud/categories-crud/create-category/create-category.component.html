@@ -1,0 +1,22 @@
+<div class="create-page">
+  <div class="container">
+    <h2 class="fw-bold text-center">Crear categoria</h2>
+    <form class="row g-3" [formGroup]="createForm" (ngSubmit)="onCreateCategory()">
+      <div class="col-md-3 mb-3">
+        <label for="category-id" class="col-form-label fw-bold">ID</label>
+        <input type="text" class="form-control" formControlName="id" id="category-id" required>
+        <div class="invalid-feedback">
+          <div *ngIf="createForm.get('id').invalid && createForm.get('id').touched">ID es requerido</div>
+        </div>
+      </div>
+      <div class="col-md-9 mb-3">
+        <label for="category-name" class="col-form-label fw-bold">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" id="category-name" required>
+        <div class="invalid-feedback">
+          <div *ngIf="createForm.get('name').invalid && createForm.get('name').touched">Nombre es requerido</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-outline-success" [disabled]="!createForm.valid">Submit</button>
+    </form>
+  </div>
+</div>

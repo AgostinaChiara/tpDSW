@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import "node_modules/ngx-toastr/toastr.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+body 
+{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+a
+{
+  text-decoration: none;
+  color: rgba(0, 0, 0, .9);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Colores */
+:root {
+  --color-span: #666;
+  --color-a: #999;
+  --color-text: rgba(0, 0, 0, .9);
+  --color-title-cart: #3483fa;
+  --color-background: darkcyan;
+
+}

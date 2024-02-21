@@ -1,0 +1,84 @@
+### Recuperar todas las películas
+GET http://localhost:3000/api/books
+
+### Recuperar los libros destacados
+GET http://localhost:3000/books/featured/
+
+### Recuperar una película por id
+GET http://localhost:3000/books/123555
+
+
+### Recuperar todos los libros por categoria
+GET http://localhost:3000/books/categories/novela
+
+### Crear un libro con POST
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "isbn": "9789506446949",
+  "title": "HOLLY",
+  "year": 2023,
+  "author": "Sthephen King",
+  "image": "https://imagessl3.casadellibro.com/a/l/s5/13/9788401031113.webp",
+  "price": 15699,
+  "category": 1,
+  "publisher": 1,
+  "cover": "Blanda",
+  "pages": 624,
+  "language": "Ingles",
+  "description": "Holly Gibney; uno de los personajes más cautivadores e ingeniosos de Stephen King; regresa en esta trepidante novela para descubrir la verdad que se esconde tras múltiples desapariciones en una ciudad del Medio Oeste. Cuando Penny Dahl contacta con Finders Keepers para que la ayuden a encontrar a su hija; algo en la voz desesperada de la mujer hace que Holly Gibney se vea obligada a aceptar el trabajo. A poca distancia del lugar en el que Bonnie Dahl desapareció; viven los profesores Rodney y Emily Harris. Son la quintaesencia de la respetabilidad burguesa: un matrimonio octogenario y dedicado de académicos semirretirados. Nadie diría que; en el sótano de su impecable casa forrada de libros; esconden un secreto directamente relacionado con la desaparición de Bonnie. Sin embargo; los Harris son astutos; pacientes y despiadados; y obligarán a Holly a emplear sus habilidades al máximo y a arriesgarlo todo si quiere cerrar el caso más oscuro al que se ha enfrentado jamás. «No podía olvidarme de Holly Gibney. Se suponía que solo iba a ser un personaje secundario en Mr. Mercedes; pero se llevó toda la atención y mi corazón. Holly es ella en estado puro». Stephen King",
+  "stock": 133
+}
+
+### Actualizar un libro
+PATCH http://localhost:3000/books/123555
+Content-Type: application/json
+
+{
+  "isbn": "123555",
+  "title": "sdasdas",
+  "year": 2023,
+  "author": "aaa King",
+  "image": "https://imagessl3.casadellibro.com/a/l/s5/13/9788401031113.webp",
+  "price": 15699,
+  "category": 1,
+  "publisher": 1,
+  "cover": "Blanda",
+  "pages": 624,
+  "language": "Ingles",
+  "description": "Holly Gibney; uno de los personajes más cautivadores e ingeniosos de Stephen King; regresa en esta trepidante novela para descubrir la verdad que se esconde tras múltiples desapariciones en una ciudad del Medio Oeste. Cuando Penny Dahl contacta con Finders Keepers para que la ayuden a encontrar a su hija; algo en la voz desesperada de la mujer hace que Holly Gibney se vea obligada a aceptar el trabajo. A poca distancia del lugar en el que Bonnie Dahl desapareció; viven los profesores Rodney y Emily Harris. Son la quintaesencia de la respetabilidad burguesa: un matrimonio octogenario y dedicado de académicos semirretirados. Nadie diría que; en el sótano de su impecable casa forrada de libros; esconden un secreto directamente relacionado con la desaparición de Bonnie. Sin embargo; los Harris son astutos; pacientes y despiadados; y obligarán a Holly a emplear sus habilidades al máximo y a arriesgarlo todo si quiere cerrar el caso más oscuro al que se ha enfrentado jamás. «No podía olvidarme de Holly Gibney. Se suponía que solo iba a ser un personaje secundario en Mr. Mercedes; pero se llevó toda la atención y mi corazón. Holly es ella en estado puro». Stephen King",
+  "stock": 133
+}
+
+### Eliminar un libro
+DELETE http://localhost:3000/books/4454554545444
+
+
+
+### Recuperar todos los usuarios
+GET http://localhost:3000/users
+
+### Recuperar un usuario por id
+GET http://localhost:3000/users/usuario
+
+
+### Registro de un usuario
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "username": "madsdkjs",
+  "email": "duki@gmail.com",
+  "password": "12345",
+  "role": "user"
+}
+
+### Login de un usuario
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "username": "mm",
+  "password": "12345"
+}

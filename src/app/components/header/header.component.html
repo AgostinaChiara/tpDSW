@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg fixed-top shadow" [ngStyle]="navbg">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home">
+      <img width="100" height="100" src="https://img.icons8.com/clouds/100/literature.png" alt="Icono" />
+      Libreria
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="list">Libros</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <li *ngFor="let category of categories"><a class="dropdown-item" [routerLink]="['/list', category.id]">{{category.name}}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link active" aria-current="page" routerLink="crud">Dashboard</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link active" aria-current="page" routerLink="charts">Informes</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" [(ngModel)]="inputText" (input)="onSearchTextChanged()" placeholder="Buscar" aria-label="Search" name="searchText">
+        <button class="btn btn-outline-success" type="submit" [routerLink]="['/list']" [queryParams]="{name: inputText}">Buscar</button>
+        <a class="navbar-user" routerLink="login" *ngIf="!isAuthenticated()">
+          <img width="30" height="30"
+            src="https://img.icons8.com/?size=32&id=15263&format=png"
+            alt="Usuario">
+        </a>
+        <a class="navbar-logout" style="margin-left: 10px;" *ngIf="isAuthenticated()" (click)="logOut()">
+          <img width="30" height="30" 
+            src="https://img.icons8.com/ios/50/exit--v1.png" 
+            alt="Logout">
+        </a>
+        <a class="navbar-cart" routerLink="cart">
+          <img width="30" height="30"
+            src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/32/external-line-travel-tanah-basah-basic-outline-tanah-basah-88.png"
+            alt="Carrito" />
+        </a>
+      </form>
+    </div>
+  </div>
+</nav>

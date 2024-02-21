@@ -1,0 +1,17 @@
+.update-page {
+  padding-top: 150px;
+}
+
+.form-container {
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 #737373;
+  display: block;
+  height: auto;
+  margin: 32px 14px;
+  min-height: unset;
+  padding: 40px 64px;
+}
+
+.btn-outline-success {
+  margin-right: 10px
+}

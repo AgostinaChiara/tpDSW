@@ -1,0 +1,145 @@
+<form class="row g-3" [formGroup]="bookForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+  <!-- ISBN  -->
+  <div class="col-md-3 mb-3">
+    <label for="book-isbn" class="col-form-label fw-bold">ISBN (*)</label>
+    <input type="text" class="form-control" formControlName="isbn" id="book-isbn"
+      [class.is-invalid]="(bookForm.get('isbn').invalid && (bookForm.get('isbn').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('isbn').hasError('required') && (bookForm.get('isbn').touched || submitted)">
+        ISBN es requerido.
+      </div>
+    </div>
+  </div>
+
+  <!-- Titulo  -->
+  <div class="col-md-9 mb-3">
+    <label for="book-title" class="col-form-label fw-bold">Titulo (*)</label>
+    <input type="text" class="form-control" formControlName="title" id="book-title"
+      [class.is-invalid]="(bookForm.get('title').invalid && (bookForm.get('title').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('title').hasError('required') && (bookForm.get('title').touched || submitted)">
+        Titulo es requerido.</div>
+    </div>
+  </div>
+
+  <!-- Imagen  -->
+  <div class="col-md-12 mb-3">
+    <label for="book-image" class="col-form-label fw-bold">Imagen (*)</label>
+    <input type="file" (change)="onFileSelected($event)" class="form-control" id="book-image"
+    [class.is-invalid]="(bookForm.get('image').invalid && (bookForm.get('image').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('image').hasError('required') && (bookForm.get('image').touched || submitted)">
+        Imagen es requerida.
+      </div>
+    </div>
+    <img *ngIf="bookForm.value.image" [src]="bookForm.value.image" alt="Selected Image" class="img-fluid mt-2">
+  </div>
+
+  <!-- Precio  -->
+  <div class="col-md-4 mb-3">
+    <label for="book-price" class="col-form-label fw-bold">Precio (*)</label>
+    <div class="input-group">
+      <span class="input-group-text">$</span>
+      <input type="number" class="form-control" formControlName="price" id="book-price" placeholder="0000"
+      [class.is-invalid]="(bookForm.get('price').invalid && (bookForm.get('price').touched || submitted)) || (bookForm.invalid && submitted)">
+      <div class="invalid-feedback">
+        <div *ngIf="bookForm.get('price').hasError('required') && (bookForm.get('price').touched || submitted)">
+          Precio es requerido.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Categoria  -->
+  <div class="col-md-8 mb-3">
+    <label for="book-categ" class="col-form-label fw-bold">Categoria (*)</label>
+    <select id="book-categ" class="form-select" formControlName="categoryId" placeholder="Choose one"
+    [class.is-invalid]="(bookForm.get('categoryId').invalid && (bookForm.get('categoryId').touched || submitted)) || (bookForm.invalid && submitted)">
+      <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+    </select>
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('categoryId').hasError('required') && (bookForm.get('categoryId').touched || submitted)">
+        Categoría es requerida.
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginas  -->
+  <div class="col-md-3 mb-3">
+    <label for="book-pages" class="col-form-label fw-bold">Paginas</label>
+    <input type="number" class="form-control" formControlName="pages" id="book-pages">
+  </div>
+
+  <!-- Año  -->
+  <div class="col-md-3 mb-3">
+    <label for="book-year" class="col-form-label fw-bold">Año (*)</label>
+    <input type="number" class="form-control" formControlName="year" id="book-year"
+    [class.is-invalid]="(bookForm.get('year').invalid && (bookForm.get('year').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('year').hasError('required') && (bookForm.get('year').touched || submitted)">
+        Año es requerido.
+      </div>
+    </div>
+  </div>
+
+  <!-- Idioma  -->
+  <div class=" col-md-6 mb-3">
+    <label for="book-lang" class="col-form-label fw-bold">Idioma</label>
+    <input type="text" class="form-control" formControlName="language" id="book-lang">
+  </div>
+
+  <!-- Descripcion  -->
+  <div class="mb-3">
+    <label for="book-desc" class="col-form-label fw-bold">Descripcion</label>
+    <textarea class="form-control" formControlName="description" id="book-desc"></textarea>
+  </div>
+
+  <!-- Stock  -->
+  <div class="col-md-4 mb-3">
+    <label for="book-stock" class="col-form-label fw-bold">Stock (*)</label>
+    <input type="number" class="form-control" formControlName="stock" id="book-stock"
+    [class.is-invalid]="(bookForm.get('stock').invalid && (bookForm.get('stock').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('stock').hasError('required') && (bookForm.get('stock').touched || submitted)">
+        Stock es requerido.
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial  -->
+  <div class="col-md-8 mb-3">
+    <label for="book-publ" class="col-form-label fw-bold">Editorial (*)</label>
+    <input type="text" class="form-control" formControlName="publisher" id="book-publisher"
+    [class.is-invalid]="(bookForm.get('publisher').invalid && (bookForm.get('publisher').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+    <div *ngIf="bookForm.get('publisher').hasError('required') && (bookForm.get('publisher').touched || submitted)">
+      Stock es requerido.
+    </div>
+    </div>
+  </div>
+
+  <!-- Autor  -->
+  <div class="col-md-8 mb-3">
+    <label for="book-author" class="col-form-label fw-bold">Autor (*)</label>
+    <input type="text" class="form-control" formControlName="author" id="book-author" 
+    [class.is-invalid]="(bookForm.get('author').invalid && (bookForm.get('author').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('author').hasError('required') && (bookForm.get('author').touched || submitted)">
+        Autor es requerido.
+      </div>
+    </div>
+  </div>
+
+  <!-- Tapa  -->
+  <div class="col-md-4 mb-3">
+    <label for="book-cover" class="col-form-label fw-bold">Tipo tapa (*)</label>
+    <input type="text" class="form-control" formControlName="cover" id="book-cover"
+    [class.is-invalid]="(bookForm.get('cover').invalid && (bookForm.get('cover').touched || submitted)) || (bookForm.invalid && submitted)">
+    <div class="invalid-feedback">
+      <div *ngIf="bookForm.get('cover').hasError('required') && (bookForm.get('cover').touched || submitted)">
+        Tipo de tapa es requerido.
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline-success">Enviar</button>
+</form>

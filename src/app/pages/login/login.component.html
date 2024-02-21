@@ -1,0 +1,72 @@
+<div class="container login-section w-75 rounded">
+  <div class="row align-items-stretch">
+    <div class="col bg-white p-5 rounded-end">
+      <div class="text-end">
+      </div>
+      <h2 class="fw-bold text-center py-5">Bienvenido!</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- User  -->
+        <div class="mb-4">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="username"
+            [class.is-invalid]="loginForm.get('username').invalid && loginForm.get('username').touched">
+          <div class="invalid-feedback">
+            <div *ngIf="loginForm.get('username').hasError('required')">Username es requerido.</div>
+          </div>
+        </div>
+
+        <!-- Password  -->
+        <div class="mb-4">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" formControlName="password"
+              [class.is-invalid]="loginForm.get('password').invalid && loginForm.get('password').touched">
+            <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+              <i class="{{ hidePassword ? 'bi bi-eye' : 'bi bi-eye-slash' }}"></i>
+            </button>
+          </div>
+          <div class="invalid-feedback">
+            <div *ngIf="loginForm.get('password').hasError('required')">Contraseña es requerida.</div>
+          </div>
+        </div>
+        
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log In</button>
+        </div>
+
+        <div class="my-3">
+          <span>No tienes cuenta? <a routerLink="/register">Register</a></span> <br>
+          <span><a href="">Recover password</a></span>
+        </div>
+      </form>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-outline-primary w-100 my-1">
+            <div class="row align-items-center">
+              <div class="col-2 d-none d-md-block">
+                <img src="https://cdn.pixabay.com/photo/2015/05/17/10/51/facebook-770688_1280.png" width="32"  alt="">
+              </div>
+              <div class="col-12 col-md-10 text-center">
+                Facebook
+              </div>
+            </div>
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-outline-danger w-100 my-1">
+            <div class="row align-items-center">
+              <div class="col-2 d-none d-md-block">
+                <img src="https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_1280.png" width="32" alt="">
+              </div>
+              <div class="col-12 col-md-10 text-center">
+                Google
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

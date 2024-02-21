@@ -1,0 +1,24 @@
+.card 
+{
+  max-width: 480px;
+  border: none;
+  box-shadow: 0px 0px 33px -1px rgba(71, 114, 254, 0.3);
+}
+
+.cardImg {
+  max-height: 280px;
+}
+
+ a {
+   text-decoration: none;
+    color: inherit;
+ }
+
+.book-title {
+  font-size: 1rem;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  transition: all 1s ease;
+}

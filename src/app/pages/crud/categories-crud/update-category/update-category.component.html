@@ -1,0 +1,19 @@
+<section class="update-page">
+  <h5 style="text-align: center;">Actualizar categoria</h5>
+  <div class="form-container">
+    <form class="row g-3" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="col-md-3 mb-3">
+        <label for="category-id" class="col-form-label">ID</label>
+        <input type="number" class="form-control" formControlName="id" id="category-id">
+      </div>
+      <div class="col-md-9 mb-3">
+        <label for="category-name" class="col-form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" id="category-name">
+      </div>
+    </form>
+    <div class="text-center mt-3">
+      <button class="btn btn-outline-success" (click)="onSubmit()">Subir</button>
+      <button class="btn btn-outline-danger" routerLink="/crudCategory">Cancelar</button>
+    </div>
+  </div>
+</section>

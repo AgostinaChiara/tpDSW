@@ -1,0 +1,22 @@
+.crud-page {
+  padding-top: 100px;
+}
+
+.btn-outline-warning {
+  margin-right: 10px;
+}
+
+.center-pagination {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.my-pagination ::ng-deep {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: darkcyan;
+}

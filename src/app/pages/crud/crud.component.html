@@ -1,0 +1,44 @@
+<section class="container mt-5 crud-page">
+  <h5>CRUD Libro</h5>
+  <form action="d-flex">
+    <button class="btn btn-outline-success" routerLink="/crud/create">Agregar libro</button>
+    <button class="btn btn-outline-primary" routerLink="/crudCategory">CRUD Categorias</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ISBN</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Año</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Editoria.</th>
+        <th scope="col">Paginas</th>
+        <th scope="col">Idioma</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books | paginate: { itemsPerPage: 5, currentPage: page }">
+        <th scope="row">{{book.isbn}}</th>
+        <td>{{book.title}}</td>
+        <td>{{book.year}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.price}}</td>
+        <td>{{book.category.name}}</td>
+        <td>{{book.publisher}}</td>
+        <td>{{book.pages}}</td>
+        <td>{{book.language}}</td>
+        <td>{{book.stock}}</td>
+        <td>
+          <button class="btn btn-outline-warning" [routerLink]="['/update', book.isbn]">Actualizar</button>
+          <button type="button" class="btn btn-outline-danger" (click)="onDeleteBook(book.isbn)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<pagination-controls class="my-pagination" (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next"></pagination-controls>

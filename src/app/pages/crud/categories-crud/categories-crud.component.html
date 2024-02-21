@@ -1,0 +1,27 @@
+<section class="container mt-5 crud-page">
+  <h5>CRUD Categoria</h5>
+  <form action="d-flex">
+    <button class="btn btn-outline-success" routerLink="/crudCategory/create">Agregar Categoria</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cat of categories | paginate: { itemsPerPage: 5, currentPage: page }">
+        <th scope="row">{{cat.id}}</th>
+        <td>{{cat.name}}</td>
+        <td>
+          <button class="btn btn-outline-warning" [routerLink]="['/updateCategory', cat.id]">Actualizar</button>
+          <button type="button" class="btn btn-outline-danger" (click)="onDeleteCat(cat.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<pagination-controls class="my-pagination" (pageChange)="page = $event" previousLabel="Previous" nextLabel="Next"></pagination-controls>

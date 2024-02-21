@@ -1,0 +1,132 @@
+<section class="featured-section">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="col-md-12 text-center mt-5">
+        <h2 class="text-white"> Libros Destacados</h2>
+        <p class="text-white"> Los más buscados este mes</p>
+      </div>
+      <div class="carousel-item active">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="row">
+              <div class="col-lg-3" *ngFor="let book of featuredBooks">
+                <app-featured-book [book]="book"></app-featured-book>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="row">
+              <div class="col-lg-3" *ngFor="let book of featuredBooks">
+                <app-featured-book [book]="book"></app-featured-book>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="row">
+              <div class="col-lg-3" *ngFor="let book of featuredBooks">
+                <app-featured-book [book]="book"></app-featured-book>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<section class="container mt-5">
+  <div class="col-md-12 text-center">
+    <h2>Ultimos lanzamientos</h2>
+  </div>
+  <div class="row">
+    <div class="col-2 mt-3" *ngFor="let book of books">
+      <app-book [book]="book"></app-book>
+    </div>
+  </div>
+</section>
+
+
+<section class="container mt-5">
+  <div class="col-md-12 text-center mb-3">
+    <h2 class="fw-bold text-start">Las categorias mas destacadas</h2>
+  </div>
+
+  <div class="card mb-5 border-light ">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_655091-MLA71102045631_082023-F.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-4 mt-5 text-center">
+        <div class="card-body text-black">
+          <h3 class="card-title fw-bold">Novelas juveniles</h3>
+          <p class="card-text">Todos los títulos de novela para adolescentes</p>
+          <button type="button" class="btn btn-outline-primary">Ver todo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 border-light ">
+    <div class="row g-0">
+      <div class="col-md-4 mt-5 text-center">
+        <div class="card-body text-black">
+          <h3 class="card-title fw-bold">Novelas románticas</h3>
+          <p class="card-text">Encontrá todos los título de del género romántico en nuestro catálogo</p>
+          <button type="button" class="btn btn-outline-primary">Ver todo</button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_896124-MLA71103213417_082023-F.jpg" class="img-fluid rounded-start"
+          alt="...">
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 border-light ">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_808274-MLA71103214615_082023-F.jpg" class="img-fluid rounded-start"
+          alt="...">
+      </div>
+      <div class="col-md-4 mt-5 text-center">
+        <div class="card-body text-black">
+          <h3 class="card-title fw-bold">Autoyuda</h3>
+          <p class="card-text">Todos los títulos para bienestar personal</p>
+          <button type="button" class="btn btn-outline-primary">Ver todo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 border-light ">
+    <div class="row g-0">
+      <div class="col-md-4 mt-5 text-center">
+        <div class="card-body text-black">
+          <h3 class="card-title fw-bold">Música</h3>
+          <p class="card-text">Encotrá todo el catálogo de música</p>
+          <button type="button" class="btn btn-outline-primary">Ver todo</button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_887535-MLA71062874074_082023-F.jpg" class="img-fluid rounded-start"
+          alt="...">
+      </div>
+    </div>
+  </div>
+</section>
