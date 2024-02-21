@@ -9,9 +9,7 @@
 * 49767 - Ambrosio, Facundo
 
 ### Repositorios
-* [frontend app](http://hyperlinkToGihubOrGitlab)
-* [backend app](http://hyperlinkToGihubOrGitlab)
-*Nota*: si utiliza un monorepo indicar un solo link con fullstack app.
+* [fullstack app](https://github.com/AgostinaChiara/tpDSW)
 
 ## Tema
 ### Descripción
@@ -23,8 +21,6 @@ Es un sistema de gestión de venta de libros que proporciona a los usuarios una 
 ## Alcance Funcional 
 
 ### Alcance Mínimo
-
-*Nota*: el siguiente es un ejemplo para un grupo de 3 integrantes para un sistema de hotel. El 
 
 Regularidad:
 |Req|Detalle|
