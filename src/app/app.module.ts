@@ -25,7 +25,6 @@ import { CrudComponent } from './pages/crud/crud.component';
 import { UpdatePageComponent } from './pages/crud/update-book/update-book.component';
 import { CreateBookComponent } from './pages/crud/create-book/create-book.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AddTokenInterceptor } from './utils/add-token.interceptor';
 import { CategoriesCrudComponent } from './pages/crud/categories-crud/categories-crud.component';
 import { CreateCategoryComponent } from './pages/crud/categories-crud/create-category/create-category.component';
@@ -56,7 +55,6 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     UpdatePageComponent,
     CreateBookComponent,
     RegisterComponent,
-    SpinnerComponent,
     CategoriesCrudComponent,
     CreateCategoryComponent,
     UpdateCategoryComponent,

@@ -15,7 +15,7 @@ export class RegisterComponent {
   loading: boolean = false;
   hidePassword: boolean = true;
 
-  constructor(private route: ActivatedRoute, private _userService: UserService,  
+  constructor(private userService: UserService,  
               private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
@@ -34,7 +34,7 @@ export class RegisterComponent {
 
       userData.role = 'user';
       this.loading = true;
-      this._userService.registerUser(userData).subscribe({
+      this.userService.registerUser(userData).subscribe({
         next: (data) => {
           this.toastr.success('El usuario fue registrado con exito', 'Usuario registrado')
           this.loading = false;

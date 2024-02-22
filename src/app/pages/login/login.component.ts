@@ -37,7 +37,7 @@ export class LoginComponent {
           this.router.navigate(['/'])
         },
         error: (error) => {
-          this.toastr.error('Contraseña o usuario incorrectos!', 'Error')
+          this.toastr.error('Datos incorrectos!', 'Error')
         }
       });
     }

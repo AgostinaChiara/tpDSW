@@ -6,7 +6,7 @@ import { OrderService } from 'src/app/services/order.service';
 @Component({
   selector: 'app-doughnut-chart',
   templateUrl: './doughnut-chart.component.html',
-  styleUrls: ['./doughnut-chart.component.css'],
+  styleUrls: [],
 })
 export class DoughnutChartComponent implements OnInit {
   public doughnutChartLabels: string[] = [];
@@ -16,7 +16,7 @@ export class DoughnutChartComponent implements OnInit {
   };
   public doughnutChartType: ChartType = 'doughnut';
 
-  constructor(private http: HttpClient, private orderService: OrderService) { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
     this.orderService.getAllOrders().subscribe(data => {
