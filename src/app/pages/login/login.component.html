@@ -8,11 +8,11 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!-- User  -->
         <div class="mb-4">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">Usuario</label>
           <input type="text" class="form-control" formControlName="username"
             [class.is-invalid]="loginForm.get('username').invalid && loginForm.get('username').touched">
           <div class="invalid-feedback">
-            <div *ngIf="loginForm.get('username').hasError('required')">Username es requerido.</div>
+            <div *ngIf="loginForm.get('username').hasError('required')">Usuario es requerido.</div>
           </div>
         </div>
 
@@ -32,12 +32,11 @@
         </div>
         
         <div class="d-grid">
-          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log In</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Iniciar Sesión</button>
         </div>
 
         <div class="my-3">
-          <span>No tienes cuenta? <a routerLink="/register">Register</a></span> <br>
-          <span><a href="">Recover password</a></span>
+          <span>No tienes cuenta? <a routerLink="/register">Registrar</a></span> <br>
         </div>
       </form>
 
