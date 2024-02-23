@@ -76,7 +76,8 @@ const routes: Routes = [{
 },
 {
   path: 'charts',
-  component: OrderChartsComponent
+  component: OrderChartsComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'order',
